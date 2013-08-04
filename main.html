@@ -8,7 +8,10 @@
 <link rel="apple-touch-startup-image" href="images/splash.png">
 <link rel="apple-touch-icon-precomposed" href="images/icon.png"/>
 
-<!--<link href='http://fonts.googleapis.com/css?family=Gloria+Hallelujah|Boogaloo' rel='stylesheet' type='text/css'>-->
+<link href='http://fonts.googleapis.com/css?family=Boogaloo' rel='stylesheet' type='text/css'>
+
+
+
 
 <title>Wat'son</title>
 
@@ -17,23 +20,15 @@
 <body>
 
 <header>
-	<a href="#" class="back"><div class="icon"></div></a>
+	<a href="/" class="go-back back"><div class="icon"></div></a>
 	<h1>WAT'SON</h1>
 	<a href="#" class="search"><div class="icon"></div></a>
 	<a href="#" class="map"><div class="icon"></div></a>
 </header>
 
-{{#if currentUser}}
 
-	{{loginButtons}}
-	{{#if currentUser}}
-    {{# if adminPanel}}
-      {{> admin}}
-    {{else}}
-      {{> adminPanelLink}}
-    {{/if}}
-	{{/if}}
-	
+ 
+  
   {{> search}}
   {{#if currentStage}}
     {{> stage}}
@@ -41,11 +36,14 @@
     {{> stages}}
   {{/if}}
 
-{{/if}}
-
-{{> stages}}
-
-
+   {{loginButtons}}
+  {{#if currentUser}}
+    {{# if adminPanel}}
+      {{> admin}}
+    {{else}}
+      {{> adminPanelLink}}
+    {{/if}}
+  {{/if}}
 </body>
 
 <template name="adminPanelLink">

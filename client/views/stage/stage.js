@@ -29,7 +29,7 @@ Template.stage.performanceSet = function() {
 Template.stage.currentSong = function() {
   return Songs.findOne({artist: Session.get('currentPerformance').artist, startAt: {$lte: OutsideLive.currentTime()}}, {sort: {startedAt: -1}});
 };
-//notes:
+
 //grab current time
 //compare current time to preformance times at this stage
 

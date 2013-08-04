@@ -34,7 +34,8 @@ Meteor.startup(function () {
             mood: obj.mood,
             lastSong: obj.lastSong,
             startedAt: OutsideLive.currentTime(),
-            endAt: -1
+            endAt: -1,
+            timestamp: new Date().getTime()
           });
           //var lastSong = Songs.findOne({artist: obj.artist, startAt: {$lte: OutsideLive.currentTime()}}, {sort: {startedAt: -1}});
           //console.log("BLURB", lastSong);
