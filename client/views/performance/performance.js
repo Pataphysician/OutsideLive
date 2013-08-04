@@ -1,5 +1,5 @@
-Template.performance.song = function () {
-	return Songs.find({}).fetch();	
+Template.performance.performance = function () {
+	return Performances.find({}).fetch();
 };
 
 Template.performance.events({
@@ -10,4 +10,3 @@ Template.performance.events({
 		});
 	}
 });
-
