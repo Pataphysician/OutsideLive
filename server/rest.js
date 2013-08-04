@@ -20,8 +20,11 @@ Meteor.startup(function () {
       before: {  // This methods, if defined, will be called before the POST/GET/PUT/DELETE actions are performed on the collection. If the function returns false the action will be canceled, if you return true the action will take place.
         POST: function(obj) {
           console.log(obj);
-          // var lastSong = Songs.findOne({artist: obj.artist, startAt: {$lte: OutsideLive.currentTime()}}, {sort: {startedAt: -1}});
-          // console.log("BLURB", lastSong._id);
+          if(Songs.find({artist: obj.artist}).count() !== 0) {
+            var lastSong = Songs.findOne({artist: obj.artist, startedAt: {$lte: OutsideLive.currentTime()}}, {sort: {startedAt: -1}});
+            console.log("BLURB", lastSong._id);
+            Songs.update({_id: lastSong._id},{$set: {endAt: OutsideLive.currentTime() - 1}});
+          }
           Songs.insert({
             name: obj.name,
             artist: obj.artist,
@@ -30,11 +33,12 @@ Meteor.startup(function () {
             genre: obj.genre,
             mood: obj.mood,
             lastSong: obj.lastSong,
-            startedAt: OutsideLive.currentTime()
+            startedAt: OutsideLive.currentTime(),
+            endAt: -1
           });
           //var lastSong = Songs.findOne({artist: obj.artist, startAt: {$lte: OutsideLive.currentTime()}}, {sort: {startedAt: -1}});
           //console.log("BLURB", lastSong);
-          //Songs.update({_id: lastSong._id},{endAt: {$set: OutsideLive.currentTime()}});
+          
           return false;
         },
         GET: undefined,  // function(collectionID, objs) {return true/false;},
