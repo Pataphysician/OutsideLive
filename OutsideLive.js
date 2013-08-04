@@ -1,62 +1,17 @@
-OutsideLive = {
 
-  currentDay: function() {
-    var date = new Date();
-    var day = date.getDay(); //returns 0-7
-
-    // adjust to return the day number of the festival
-    switch (day)
-    {
-      case 5:
-        return 1;
-        break;
-      case 6:
-        return 2;
-        break;
-      case 7:
-        return 3;
-        break;
-    }
-  },
-
-  currentTime: function() {
-    var date = new Date();
-    var hours = date.getHours().toString();
-    var minutes = date.getMinutes().toString();
-    return parseInt(hours + minutes);
-  },
-
-  currentPerformance: function(stage) {
-    var currentTime = OutsideLive.currentTime();
-
-    current_performance = Performances.find(
-      {stage: stage,
-       startTime: {$lte: currentTime},
-       endTime: {$gte: currentTime},
-      }).fetch();
-
-    return current_performance;
-  },
-
-  createStages: function() {
-    console.log("should create stages");
-    var stage_names = ["Land's End", "Sutro", "Twin Peaks", 
-    "Panhandle", "The Dome", "The Barbary"]
-    var stages = Stages.find().fetch();
-    if (!stages.length) {
-      _.each(stage_names, function(stage_name) {
-        Stages.insert({
-          name: stage_name,
-        });
-      });
-    }
-    return stages;
-  },
-
-};
 
 if (Meteor.isClient) {
-  Meteor.startup(OutsideLive.createStages);
+  
+  Meteor.startup(function() {
+    // client: subscribe to the count for the current room
+      //Meteor.subscribe("number-of-stages");
+      OutsideLive.createStages();
+      
+      
+    
+    //Data subscription complete. All data is downloaded
+    
+  });
 
   Template.adminPanelLink.events({
     'click a.admin-panel' : function () {
@@ -79,4 +34,46 @@ if (Meteor.isClient) {
 };
 
 if (Meteor.isServer) {
+  
+  Meteor.startup(function() {
+    
+    
+    // server: publish the current size of a collection
+    
+  });
+
+  // Meteor.publish("number-of-stages", function () {
+  //     var self = this;
+  //     var count = 0;
+  //     var initializing = true;
+
+  //     var handle = Stages.find({}).observeChanges({
+  //       added: function (id) {
+  //         count++;
+  //         if (!initializing)
+  //           self.changed("counts", {count: count});
+  //       },
+  //       removed: function (id) {
+  //         count--;
+  //         self.changed("counts", {count: count});
+  //       }
+  //       // don't care about moved or changed
+  //     });
+
+  //     // Observe only returns after the initial added callbacks have
+  //     // run.  Now return an initial value and mark the subscription
+  //     // as ready.
+  //     initializing = false;
+  //     self.added("counts", {count: count});
+  //     console.log('sub ready');
+  //     self.ready();
+
+  //     // Stop observing the cursor when client unsubs.
+  //     // Stopping a subscription automatically takes
+  //     // care of sending the client any removed messages.
+  //     self.onStop(function () {
+  //       handle.stop();
+  //     });
+  //   });
+
 };

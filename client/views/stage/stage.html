@@ -1,8 +1,13 @@
 <template name="stage">
   <h1>{{stage.name}}</h1>
   <p>Current Artist: {{currentPerformance.artist}}</p>
-  <p>Start Time: {{currentPerformance.startTime}}</p>
-  <p>End Time: {{currentPerformance.endTime}}</p>
+  <p>Time: {{currentPerformance.startTime}} - {{currentPerformance.endTime}}</p>
+
+  <p>NowPlaying: {{currentSong.name}} Started at: {{currentSong.startedAt}}</p>
+  <h1>Set History</h1>
+  {{#each performanceSet}}
+    <p>{{name}}: {{startedTime}}</p>
+  {{/each}}
   <h3>Upcoming Performances</h3>
   {{#each upcomingPerformances}}
   <p>Artist: {{artist}}</p>

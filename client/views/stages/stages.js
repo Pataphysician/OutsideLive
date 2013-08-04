@@ -2,8 +2,10 @@ Template.stages.events({
   "click a.show-stage": function(event) {
     event.preventDefault();
     var stage_name = $(event.target).attr('data-id');
-    var stage = Stages.find({name: stage_name}).fetch();
+    var stage = Stages.find({name: stage_name}).fetch()[0];
     Session.set("currentStage", stage);
+    var currentPerformance = OutsideLive.currentPerformance(stage)[0];
+    Session.set('currentPerformance', currentPerformance);
   },
 });
 
