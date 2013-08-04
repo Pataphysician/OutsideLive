@@ -6,9 +6,15 @@
 	{{loginButtons}}
 	{{#if currentUser}}
   		{{> admin}}
-  	{{else}}
-      {{> performance}}
-  	{{/if}}
+	{{else}}
+
+    {{#if currentStage}}
+      {{> stage}}
+    {{else}}
+      {{> stages}}
+    {{/if}}
+	
+  {{/if}}
 </body>
 
 <template name="hello">

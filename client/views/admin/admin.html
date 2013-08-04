@@ -3,17 +3,20 @@
   <label for="artist">Artist</label>
   <input type="text" name="artist">
   <br>
-  <label for="set_length">Set Length</label>
-  <input type="number" name="set_length" min=".25" max="2" step=".25"> Hours
+  <label for="start_time">Start Time</label>
+  <input type="time" name="start_time" value="{{currentTime}}">
+  <br>
+  <label for="end_time">End Time</label>
+  <input type="time" name="end_time">
   <br>
   <label for="stage">Stage</label>
   <select name="stage">
-    <option value="landsend">Land's End</option>
-    <option value="sutro">Sutro</option>
-    <option value="twinpeaks">Twin Peaks</option>
-    <option value="panhandle">Panhandle</option>
-    <option value="dome">The Dome by Heineken</option>
-    <option value="barbary">The Barbary</option>
+    <option value="Land's End">Land's End</option>
+    <option value="Sutro">Sutro</option>
+    <option value="Twin Peaks">Twin Peaks</option>
+    <option value="Panhandle">Panhandle</option>
+    <option value="The Dome">The Dome by Heineken</option>
+    <option value="The Barbary">The Barbary</option>
   </select>
   <br>
   <input type="submit" value="Create Performance">
