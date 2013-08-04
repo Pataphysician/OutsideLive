@@ -18,6 +18,8 @@ Template.admin.events({
       startTime: start_time,
       endTime: end_time,
     })
+
+    Session.set("adminPanel", false);
   },
 
   "click a.back-to-performances": function(event) {

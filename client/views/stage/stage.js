@@ -29,19 +29,16 @@ Template.stage.performanceSet = function() {
 Template.stage.currentSong = function() {
   return Songs.findOne({artist: Session.get('currentPerformance').artist, startAt: {$lte: OutsideLive.currentTime()}}, {sort: {startedAt: -1}});
 };
-
+//notes:
 //grab current time
 //compare current time to preformance times at this stage
 
 //list in order upcoming performances
-
-
 Template.stage.upcomingPerformances = function() {
   var stage = Session.get('currentStage');
   var currentPerformance = Template.stage.currentPerformance();
   if (currentPerformance) {
     var current_performance_end = currentPerformance.endTime;
-
     var upcoming_performances = Performances.find({
       stage: stage.name,
       startTime: {$gte: current_performance_end}
@@ -51,4 +48,10 @@ Template.stage.upcomingPerformances = function() {
 
     return upcoming_performances;
   }
+};
+
+Template.stage.currentArtistImageURL = function(performance) {
+  var artist = performance.artist;
+  performance.imageURL = OutsideLive.getArtistImage(artist);
+  return artist.imageURL;
 };

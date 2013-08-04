@@ -1,3 +1,6 @@
 <template name="search">
   <input type="text" name="search" placeholder="Search for artist">
+  {{#if searchResults}}
+    {{> searchResults}}
+  {{/if}}
 </template>
