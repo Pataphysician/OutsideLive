@@ -1,5 +1,24 @@
 OutsideLive = {
 
+  currentDay: function() {
+    var date = new Date();
+    var day = date.getDay(); //returns 0-7
+
+    // adjust to return the day number of the festival
+    switch (day)
+    {
+      case 5:
+        return 1;
+        break;
+      case 6:
+        return 2;
+        break;
+      case 7:
+        return 3;
+        break;
+    }
+  },
+
   currentTime: function() {
     var date = new Date();
     var hours = date.getHours().toString();
@@ -39,20 +58,22 @@ OutsideLive = {
 if (Meteor.isClient) {
   Meteor.startup(OutsideLive.createStages);
 
-  Template.hello.greeting = function () {
-    return "Welcome to OutsideLive.";
-  };
-
-  Template.hello.events({
-    'click input' : function () {
-      // template data, if any, is available in 'this'
-      if (typeof console !== 'undefined')
-        console.log("You pressed the button");
+  Template.adminPanelLink.events({
+    'click a.admin-panel' : function () {
+      Session.set("adminPanel", true);
     }
   });
 
   Handlebars.registerHelper("currentStage", function() {
     return Session.get("currentStage");
+  });
+
+  Handlebars.registerHelper("isCurrentUser", function() {
+    return Meteor.user();
+  });
+
+  Handlebars.registerHelper("adminPanel", function() {
+    return Session.get("adminPanel");
   });
 
 };

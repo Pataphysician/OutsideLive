@@ -10,7 +10,7 @@ Template.stages.events({
 Template.stages.currentPerformances = function() {
   var stages = Stages.find().fetch();
   _.each(stages, function(stage) {
-    current_performance = OutsideLive.currentPerformance(stage.name);
+    current_performance = OutsideLive.currentPerformance(stage);
     stage.currentPerformance = current_performance[0];
   });
 

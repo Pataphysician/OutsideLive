@@ -10,7 +10,7 @@ Template.stage.stage = function() {
 
 Template.stage.currentPerformance = function() {
   var stage = Template.stage.stage();
-  var currentPerformance = OutsideLive.currentPerformance(stage.name);
+  var currentPerformance = OutsideLive.currentPerformance(stage);
 
   return currentPerformance[0];
 };

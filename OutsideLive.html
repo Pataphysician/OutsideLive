@@ -5,20 +5,22 @@
 <body>
 	{{loginButtons}}
 	{{#if currentUser}}
-  		{{> admin}}
-	{{else}}
-
-    {{#if currentStage}}
-      {{> stage}}
+    {{# if adminPanel}}
+      {{> admin}}
     {{else}}
-      {{> stages}}
+      {{> adminPanelLink}}
     {{/if}}
-	
+	{{/if}}
+  <br>
+  {{> search}}
+  {{#if currentStage}}
+    {{> stage}}
+  {{else}}
+    {{> stages}}
   {{/if}}
+
 </body>
 
-<template name="hello">
-  <h1>Hello World!</h1>
-  {{greeting}}
-  <input type="button" value="Click" />
+<template name="adminPanelLink">
+  <a href="#" class="admin-panel">Enter New Performance</a>
 </template>

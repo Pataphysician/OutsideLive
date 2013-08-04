@@ -1,5 +1,8 @@
 <template name="admin">
   <h1>Add New Performance</h1>
+  <label for="day">Day</label>
+  <input type="number" min="1" max="3" step="1">
+  <br>
   <label for="artist">Artist</label>
   <input type="text" name="artist">
   <br>
@@ -20,4 +23,6 @@
   </select>
   <br>
   <input type="submit" value="Create Performance">
+  <br>
+  <a href="#" class="back-to-performances">Back to stages</a>
 </template>
