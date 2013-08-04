@@ -1,7 +1,21 @@
 {
   "meteor": {},
   "dependencies": {
-    "basePackages": {},
-    "packages": {}
+    "basePackages": {
+      "reststop": {},
+      "collection-api": {}
+    },
+    "packages": {
+      "reststop": {
+        "git": "https://github.com/gkoberger/meteor-reststop.git",
+        "tag": "v0.4.0",
+        "commit": "653e6d5354ed1b37095b19ef67021c01ce59827e"
+      },
+      "collection-api": {
+        "git": "https://github.com/crazytoad/meteor-collectionapi.git",
+        "tag": "v0.1.14",
+        "commit": "d42ba1681289cb093afa7c67500862241df15f9e"
+      }
+    }
   }
 }
