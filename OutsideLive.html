@@ -1,8 +1,30 @@
 <head>
-  <title>OutsideLive</title>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<link rel="apple-touch-startup-image" href="images/splash.png">
+<link rel="apple-touch-icon-precomposed" href="images/icon.png"/>
+
+<!--<link href='http://fonts.googleapis.com/css?family=Gloria+Hallelujah|Boogaloo' rel='stylesheet' type='text/css'>-->
+
+<title>Wat'son</title>
+
 </head>
 
 <body>
+
+<header>
+	<a href="#" class="back"><div class="icon"></div></a>
+	<h1>WAT'SON</h1>
+	<a href="#" class="search"><div class="icon"></div></a>
+	<a href="#" class="map"><div class="icon"></div></a>
+</header>
+
+{{#if currentUser}}
+
 	{{loginButtons}}
 	{{#if currentUser}}
     {{# if adminPanel}}
@@ -11,13 +33,18 @@
       {{> adminPanelLink}}
     {{/if}}
 	{{/if}}
-  <br>
+	
   {{> search}}
   {{#if currentStage}}
     {{> stage}}
   {{else}}
     {{> stages}}
   {{/if}}
+
+{{/if}}
+
+{{> stages}}
+
 
 </body>
 
