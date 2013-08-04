@@ -1,21 +1,23 @@
 Template.stages.events({
   "click a.show-stage" : function(event) {
     event.preventDefault();
-    console.log($(event.target).closest("a"));
+    console.log($(event.target).closest("a").attr('data-id'));
     var stage_name = $(event.target).closest("a").attr('data-id');
     var stage = Stages.find({name: stage_name}).fetch()[0];
+    console.log("stage",stage)
     Session.set("currentStage", stage);
-    var currentPerformance = OutsideLive.currentPerformance(stage)[0];
+    var currentPerformance = OutsideLive.currentPerformance(stage.name);
     Session.set('currentPerformance', currentPerformance);
-  },
+  }
 });
 
 Template.stages.currentPerformances = function() {
   var stages = Stages.find().fetch();
+  console.log("stages: ",stages)
   _.each(stages, function(stage) {
-    current_performance = OutsideLive.currentPerformance(stage);
-    stage.currentPerformance = current_performance[0];
-    console.log(current_performance[0]);
+    current_performance = OutsideLive.currentPerformance(stage.name);
+    stage.currentPerformance = current_performance;
+    console.log(current_performance);
     if(stage.currentPerformance !== undefined) {
       var time = new Date().getTime();
       stage.currentSong = Songs.findOne({artist: stage.currentPerformance.artist, timestamp: {$lte: time}}, {sort: {timestamp: -1}});

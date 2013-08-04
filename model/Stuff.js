@@ -1,0 +1,1 @@
+Stuff = new Meteor.Collection('stuff');
