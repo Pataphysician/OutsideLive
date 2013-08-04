@@ -56,31 +56,32 @@ OutsideLive = {
     return stages;
   },
 
-  getArtistImage: function(artist_name) {
+  getArtistImage: function(performance) {
     url = "http://developer.echonest.com/api/v4/artist/images"
 
     Meteor.http.call("GET", url, 
       {params: {
         api_key: "FJIRSCGH8XZMYGTBT",
-        name: artist_name,
+        name: performance.artist,
       }},
       function(error, result) {
         var imageURL = result.data.response.images[0].url;
+        performance.imageURL = imageURL;
         return imageURL;
       })
   },
 
-  getArtistBio: function(artist_name) {
+  getArtistBio: function(performance) {
     url = "http://developer.echonest.com/api/v4/artist/biographies"
 
     Meteor.http.call("GET", url,
       {params: {
         api_key: "FJIRSCGH8XZMYGTBT",
-        name: artist_name,
+        name: performance.artist,
       }},
       function(error, result) {
         var bio = result.data.response.biographies[0].text;
-        console.log(bio);
+        performance.bio = bio;
         return bio;
       })
   },
