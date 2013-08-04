@@ -1,6 +1,7 @@
 {
   "packages": {
     "reststop": {},
-    "collection-api": {}
+    "collection-api": {},
+    "npm": {}
   }
 }

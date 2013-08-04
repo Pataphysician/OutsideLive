@@ -15,14 +15,11 @@ Template.stage.currentPerformance = function() {
   return currentPerformance[0];
 };
 
-
-
 Template.stage.upcomingPerformances = function() {
   var stage = Template.stage.stage();
   var currentPerformance = Template.stage.currentPerformance();
   if (currentPerformance) {
     var current_performance_end = Template.stage.currentPerformance().endTime;
-
     var upcoming_performances = Performances.find({
       stage: stage.name,
       startTime: {$gte: current_performance_end}
@@ -32,4 +29,10 @@ Template.stage.upcomingPerformances = function() {
 
     return upcoming_performances;
   }
+};
+
+Template.stage.currentArtistImageURL = function(performance) {
+  var artist = performance.artist;
+  performance.imageURL = OutsideLive.getArtistImage(artist);
+  return artist.imageURL;
 };

@@ -3,7 +3,8 @@
   "dependencies": {
     "basePackages": {
       "reststop": {},
-      "collection-api": {}
+      "collection-api": {},
+      "npm": {}
     },
     "packages": {
       "reststop": {
@@ -15,6 +16,11 @@
         "git": "https://github.com/crazytoad/meteor-collectionapi.git",
         "tag": "v0.1.14",
         "commit": "d42ba1681289cb093afa7c67500862241df15f9e"
+      },
+      "npm": {
+        "git": "https://github.com/arunoda/meteor-npm.git",
+        "tag": "v0.1.4",
+        "commit": "68ab2b952ab21a5bbba879b37be9385ec8ff6d63"
       }
     }
   }

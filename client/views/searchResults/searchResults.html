@@ -1,8 +1,12 @@
 <template name="searchResults">
   {{#each results}}
-  <p>Artist Name: {{artist}}</p>
+  <h4>Artist Name: {{artist}}</h4>
+  {{#if nowPlaying this}}
+  <strong>Now Playing</strong>
+  {{/if}}
   <p>Stage: {{stage.name}}</p>
   <p>Start Time: {{startTime}}</p>
   <p>End Time: {{endTime}}</p>
   {{/each}}
+  <a href="#" class="close-search">Close Results</a>
 </template>
