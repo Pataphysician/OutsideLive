@@ -20,6 +20,8 @@ Template.stages.currentPerformances = function() {
       var time = new Date().getTime();
       stage.currentSong = Songs.findOne({artist: stage.currentPerformance.artist, timestamp: {$lte: time}}, {sort: {timestamp: -1}});
       console.log('cuuuurrent song:', stage.currentSong);
+      stage.remaining = OutsideLive.setPercentageRemaining(stage);
+      stage.minutesLeft = OutsideLive.setMinutesRemaining(stage);
     }
   });
 
