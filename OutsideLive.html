@@ -3,7 +3,12 @@
 </head>
 
 <body>
-  {{> hello}}
+	{{loginButtons}}
+	{{#if currentUser}}
+  		{{> performance}}
+  	{{else}}
+  		Please log in!
+  	{{/if}}
 </body>
 
 <template name="hello">
