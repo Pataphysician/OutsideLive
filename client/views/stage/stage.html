@@ -1,18 +1,50 @@
 <template name="stage">
-  <h1>{{stage.name}}</h1>
-  <p>Current Artist: {{currentPerformance.artist}}</p>
-  <p>Time: {{currentPerformance.startTime}} - {{currentPerformance.endTime}}</p>
+<div id="{{stage.slug}}" class="single">
 
-  <p>NowPlaying: {{currentSong.name}} Started at: {{currentSong.startedAt}}</p>
-  <h1>Set History</h1>
-  {{#each performanceSet}}
-    <p>{{name}}: {{startedTime}}</p>
-  {{/each}}
-  <h3>Upcoming Performances</h3>
-  {{#each upcomingPerformances}}
-  <p>Artist: {{artist}}</p>
-  <p>Start Time: {{startTime}}</p>
-  <p>End Time: {{endTime}}</p>
-  {{/each}}
-  <a href="#" class="go-back">Back to stages</a>
+	<div class="image">
+		<div class="icon"></div>
+		<h2>{{stage.name}} Stage</h2>
+	</div>
+	
+	<div class="band-card">
+		<div class="image" style="background-image: url('http://www.hollywoodreporter.com/sites/default/files/imagecache/thumbnail_570x321/2013/02/phoenix_band_stage_a_l.jpg');"></div>
+		<div class="band-name">{{currentPerformance.artist}}</div>
+		<div class="time" data-start="{{currentPerformance.startTime}}" data-end="{{currentPerformance.endTime}}">
+			<div class="bar"><div class="label"></div></div>
+		</div>
+		<ul class="song-list">
+		
+			{{#each performanceSet}}
+			  	<li><strong>{{name}}</strong><span>{{startedTime}} - 3:14</span></li>
+			{{/each}}
+  
+				<li><strong>Live: {{currentSong.name}}</strong><span><!--{{currentSong.startedAt}}--><div class="icon"></div></span></li>
+		</ul>
+	</div>
+
+<h4>Later Today:</h4>
+
+<ul class="bands-list">
+
+	{{#each upcomingPerformances}}
+	<li>
+		<div class="left">
+			<div class="name">{{artist}}</div>
+			<ul class="tags">
+				<li>Punk Rock</li>
+				<li>Surfer</li>
+				<li>Dystopia Rock</li>
+			</ul>
+		</div>
+		<div class="right">
+			<div class="set-time">{{startTime}}PM</div>
+		</div>
+	</li>
+	{{/each}}
+
+</ul>
+  
+<!-- <a href="#" class="go-back">Back to stages</a> -->
+  
+</div>
 </template>

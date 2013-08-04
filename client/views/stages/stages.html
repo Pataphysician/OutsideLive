@@ -1,8 +1,22 @@
 <template name="stages">
-  {{#each currentPerformances}}
-  <h3><a href="#" class="show-stage" data-id="{{name}}">{{name}}</a></h3>
-  <p>Current Artist: {{currentPerformance.artist}}</p>
-  <p>Start Time: {{currentPerformance.startTime}}</p>
-  <p>End Time: {{currentPerformance.endTime}}</p>
-  {{/each}}
+<ul id="stages">
+
+	{{#each currentPerformances}}
+	<li class="stage" id="{{slug}}" data-id="{{name}}">
+		<a href="#" class="artist full" data-color="#006d4c">
+			
+			<div class="image"><div class="icon"></div></div>
+			<div class="text">
+				<span class="band">{{currentPerformance.artist}}</span>
+				<span class="song">Drakkar Noir</span>
+			</div>
+			<div class="time" data-start="{{currentPerformance.startTime}}" data-end="{{currentPerformance.endTime}}">
+				<div class="bar"><div class="label"></div></div>
+			</div>
+  	
+  		</a>
+	</li>
+  	{{/each}}
+
+</ul>
 </template>
