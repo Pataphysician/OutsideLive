@@ -116,15 +116,4 @@ if (Meteor.isClient) {
 };
 
 if (Meteor.isServer) {
-  Meteor.methods({
-    registerGracenote: function() {
-      var gnd = Meteor.require("Gracenode");
-      var app = gnd.app({
-        "clientID": "6658304",
-        "clientTag": "AC3AAB7D260C23E5D2E11356B5028688" 
-      });
-      var userId = app.register();
-      console.log(userId);
-    }
-  });
 };
