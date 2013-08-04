@@ -1,0 +1,8 @@
+<template name="stages">
+  {{#each currentPerformances}}
+  <h3><a href="#" class="show-stage" data-id="{{name}}">{{name}}</a></h3>
+  <p>Current Artist: {{currentPerformance.artist}}</p>
+  <p>Start Time: {{currentPerformance.startTime}}</p>
+  <p>End Time: {{currentPerformance.endTime}}</p>
+  {{/each}}
+</template>

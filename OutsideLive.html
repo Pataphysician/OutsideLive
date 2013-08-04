@@ -5,10 +5,16 @@
 <body>
 	{{loginButtons}}
 	{{#if currentUser}}
-  		{{> performance}}
-  	{{else}}
-  		Please log in!
-  	{{/if}}
+  		{{> admin}}
+	{{else}}
+
+    {{#if currentStage}}
+      {{> stage}}
+    {{else}}
+      {{> stages}}
+    {{/if}}
+	
+  {{/if}}
 </body>
 
 <template name="hello">

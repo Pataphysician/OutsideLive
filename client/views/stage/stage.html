@@ -1,0 +1,13 @@
+<template name="stage">
+  <h1>{{stage.name}}</h1>
+  <p>Current Artist: {{currentPerformance.artist}}</p>
+  <p>Start Time: {{currentPerformance.startTime}}</p>
+  <p>End Time: {{currentPerformance.endTime}}</p>
+  <h3>Upcoming Performances</h3>
+  {{#each upcomingPerformances}}
+  <p>Artist: {{artist}}</p>
+  <p>Start Time: {{startTime}}</p>
+  <p>End Time: {{endTime}}</p>
+  {{/each}}
+  <a href="#" class="go-back">Back to stages</a>
+</template>

@@ -1,0 +1,23 @@
+<template name="admin">
+  <h1>Add New Performance</h1>
+  <label for="artist">Artist</label>
+  <input type="text" name="artist">
+  <br>
+  <label for="start_time">Start Time</label>
+  <input type="time" name="start_time" value="{{currentTime}}">
+  <br>
+  <label for="end_time">End Time</label>
+  <input type="time" name="end_time">
+  <br>
+  <label for="stage">Stage</label>
+  <select name="stage">
+    <option value="Land's End">Land's End</option>
+    <option value="Sutro">Sutro</option>
+    <option value="Twin Peaks">Twin Peaks</option>
+    <option value="Panhandle">Panhandle</option>
+    <option value="The Dome">The Dome by Heineken</option>
+    <option value="The Barbary">The Barbary</option>
+  </select>
+  <br>
+  <input type="submit" value="Create Performance">
+</template>
