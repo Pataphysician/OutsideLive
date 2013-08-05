@@ -25,7 +25,8 @@ Meteor.startup(function () {
             console.log("BLURB", lastSong._id);
             Songs.update({_id: lastSong._id},{$set: {endAt: OutsideLive.currentTime() - 1}});
           }
-          Songs.insert({
+
+          var song_attrs = {
             name: obj.name,
             artist: obj.artist,
             stage: Stages.findOne({name: OutsideLive.iOSStageToWeb(obj.stage)}),
@@ -36,7 +37,18 @@ Meteor.startup(function () {
             startedAt: OutsideLive.currentTime(),
             endAt: -1,
             timestamp: new Date().getTime()
+          };
+
+          var performance = Performances.findOne({artist: obj.artist});
+
+          Songs.insert(song_attrs);
+
+          var lastSong = Songs.findOne({
+            name: obj.name,
+            artist: obj.artist
           });
+
+          performance.setList.push(lastSong);
           //var lastSong = Songs.findOne({artist: obj.artist, startAt: {$lte: OutsideLive.currentTime()}}, {sort: {startedAt: -1}});
           //console.log("BLURB", lastSong);
           

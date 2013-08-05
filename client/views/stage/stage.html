@@ -1,5 +1,5 @@
 <template name="stage">
-<div id="{{stage.slug}}" class="single">
+<div id="{{slug}}" class="single">
 
 	<div class="image">
 		<div class="icon"></div>
@@ -14,7 +14,7 @@
 		</div>
 		<ul class="song-list">
 		
-			{{#each performanceSet}}
+			{{#each setList}}
 			  	<li><strong>{{name}}</strong><span>{{startedTime}} - 3:14</span></li>
 			{{/each}}
   

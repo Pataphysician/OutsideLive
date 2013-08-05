@@ -2,18 +2,20 @@
 <div class = "stuff">
 <ul id="stages">
 
-	{{#each currentPerformances}}
+	{{#each stages}}
 	<li class="stage" id="{{slug}}">
-		<a href="#" class="show-stage artist full" data-id="{{name}}" data-color="#006d4c">
+		<a href="#" class="show-stage artist full" data-id="{{_id}}" data-color="#006d4c">
 			
 			<div class="image"><div class="icon"></div></div>
+			{{#if currentPerformance}}
 			<div class="text">
 				<span class="band">{{currentPerformance.artist}}</span>
 				<span class="song">{{currentSong.name}}</span>
 			</div>
 			<div class="time" data-start="{{currentPerformance.startTime}}" data-end="{{currentPerformance.endTime}}">
-				<div class="bar" style="width: {{remaining}}%"><div class="label">{{minutesLeft}} Minutes Left</div></div>
+				<div class="bar" style="width: {{percentageComplete}}%"><div class="label">{{minutesLeft}} Minutes Left</div></div>
 			</div>
+			{{/if}}
   	
   		</a>
 	</li>
