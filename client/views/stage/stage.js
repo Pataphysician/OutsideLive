@@ -55,6 +55,17 @@ Template.stage.upcomingPerformances = function() {
   }
 };
 
+Template.stage.pastPerformances = function() {
+  var stage = Session.get('currentStage');
+  var currentTime = OutsideLive.currentTime();
+  var pastPerformances = Performances.find({
+    stageID: stage._id,
+    endTime: {$lte: currentTime}
+  }).fetch();
+
+  return pastPerformances;
+};
+
 Template.stage.currentArtistImageURL = function(performance) {
   var artist = performance.artist;
   performance.imageURL = OutsideLive.getArtistImage(artist);

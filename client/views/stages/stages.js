@@ -12,22 +12,35 @@ Template.stages.events({
 });
 
 Template.stages.stages = function() {
-  stages = Template.stages.allStages();
+  return Session.get('stages');
+};
+
+Template.stages.updateStages = function() {
+  var stages = Template.stages.allStages();
   stages.forEach(function(stage) {
-      currentPerformance = Template.stages.stageCurrentPerformance(stage);
-      stage.currentPerformance = currentPerformance;
-      if(currentPerformance) {
-        stage.currentSong = _.last(currentPerformance.setList);
-        stage.percentageComplete = OutsideLive.percentageComplete(currentPerformance);
-        stage.minutesLeft = OutsideLive.setMinutesRemaining(currentPerformance);
-      }
-    });
-  //when this function runs, the session is reset with the new information
+    var stageID = stage._id
+    console.log(stage._id);
+    current_performance = Template.stages.stageCurrentPerformance(stage);
+    console.log("Current Performance");
+    console.log(current_performance);
+    if(current_performance) {
+      var current_song_id = _.last(current_performance.setList);
+      var current_song = Songs.findOne({_id: current_song_id});
+      var percentage_complete = OutsideLive.percentageComplete(current_performance);
+      var minutes_left = OutsideLive.setMinutesRemaining(current_performance);
+      Stages.update({_id: stageID},
+        {$set: {
+          currentPerformance: current_performance,
+          currentSong: current_song,
+          percentageComplete: percentage_complete,
+          minutesLeft: minutes_left
+        }
+      })
+      console.log("updated stage ")
+    }
+  });
+
   Session.set('stages', stages);
-  //the template will by default "listen" to changes in the session, so the view will
-  //re-render when anything in the session changes
-  //in this case, the "minutes left" changes everytime we call this function, which
-  //is updated accordingly in the view
   return Session.get('stages');
 };
 

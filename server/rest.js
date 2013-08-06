@@ -50,7 +50,7 @@ Meteor.startup(function () {
 
 
             
-             // var performance = Performances.findOne({artist: obj.artist});
+             var performance = Performances.findOne({artist: obj.artist});
              // performance.setList.push(newSong);
 
             var newSong = Songs.findOne({
@@ -58,7 +58,11 @@ Meteor.startup(function () {
               artist: obj.artist
             });
 
-            Performances.update({artist: obj.artist}, {$push: {setList: newSong._id}});
+            Performances.update({artist: obj.artist}, {$push: {
+                setList: newSong._id, 
+                percentMarkers: OutsideLive.percentageComplete(performance)
+              }
+            });
             
             if(Songs.find({artist: obj.artist}).count() !== 0) {
               OutsideLive.setEndTime(newSong)
