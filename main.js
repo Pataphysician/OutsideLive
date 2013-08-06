@@ -7,6 +7,11 @@ if (Meteor.isClient) {
       //Meteor.subscribe("number-of-stages");
       OutsideLive.createStages();
 
+      Meteor.setInterval(function() {
+        //update the attributes for the stages every 30 seconds
+        Template.stages.stages();
+      }, 30000);
+
       //demo click has three songs, others have one current one
       //make time of shit between 12pm and 5pm
       //manual setting of performances
@@ -88,7 +93,6 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
   
   Meteor.startup(function() {
-    
     
     // server: publish the current size of a collection
     

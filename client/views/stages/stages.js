@@ -13,17 +13,22 @@ Template.stages.events({
 
 Template.stages.stages = function() {
   stages = Template.stages.allStages();
-  _.each(stages, function(stage) {
-    currentPerformance = Template.stages.stageCurrentPerformance(stage);
-    stage.currentPerformance = currentPerformance;
-    if(currentPerformance) {
-      stage.currentSong = _.last(currentPerformance.setList);
-      stage.percentageComplete = OutsideLive.percentageComplete(currentPerformance);
-      stage.minutesLeft = OutsideLive.setMinutesRemaining(currentPerformance);
-    }
-  });
-
-  return stages;
+  stages.forEach(function(stage) {
+      currentPerformance = Template.stages.stageCurrentPerformance(stage);
+      stage.currentPerformance = currentPerformance;
+      if(currentPerformance) {
+        stage.currentSong = _.last(currentPerformance.setList);
+        stage.percentageComplete = OutsideLive.percentageComplete(currentPerformance);
+        stage.minutesLeft = OutsideLive.setMinutesRemaining(currentPerformance);
+      }
+    });
+  //when this function runs, the session is reset with the new information
+  Session.set('stages', stages);
+  //the template will by default "listen" to changes in the session, so the view will
+  //re-render when anything in the session changes
+  //in this case, the "minutes left" changes everytime we call this function, which
+  //is updated accordingly in the view
+  return Session.get('stages');
 };
 
 Template.stages.stageCurrentPerformance = function(stage) {
