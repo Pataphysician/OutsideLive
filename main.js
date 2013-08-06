@@ -44,10 +44,11 @@ if (Meteor.isClient) {
     // client: subscribe to the count for the current room
       //Meteor.subscribe("number-of-stages");
       OutsideLive.createStages();
+      Template.stages.updateStages();
 
       Meteor.setInterval(function() {
         //update the attributes for the stages every 30 seconds
-        Template.stages.stages();
+        Template.stages.updateStages();
       }, 30000);
 
       //demo click has three songs, others have one current one

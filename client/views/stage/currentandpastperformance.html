@@ -1,0 +1,44 @@
+<template name="stagehistory">
+<div id="{{slug}}" class="single">
+
+  <div class="image">
+    <div class="icon"></div>
+    <h2>{{stage.name}} Stage</h2>
+  </div>
+  
+  <div class="band-card">
+    <div class="image" style="background-image: url('http://www.hollywoodreporter.com/sites/default/files/imagecache/thumbnail_570x321/2013/02/phoenix_band_stage_a_l.jpg');"></div>
+    <div class="band-name">{{currentPerformance.artist}}</div>
+    <div class="time" data-start="{{currentPerformance.startTime}}" data-end="{{currentPerformance.endTime}}">
+      <div class="bar"><div class="label"></div></div>
+    </div>
+    <ul class="song-list">
+    
+      {{#each setList}}
+          <li><strong>{{name}}</strong><span>{{startedTime}} - 3:14</span></li>
+      {{/each}}
+  
+        <li><strong>Live: {{currentSong.name}}</strong><span><!--{{currentSong.startedAt}}--><div class="icon"></div></span></li>
+    </ul>
+  </div>
+
+<h4>Past Performances</h4>
+
+<ul class="past-performances">
+  {{#each pastPerformances}}
+  <li id="past-performance">
+  <div id="performance info">
+    <p>{{artist}}<p>
+    <p>Set List</p>
+      <ol>
+      {{#each setList}}
+        <li>{{name}}</li>
+        <li>{{startedAt}} - {{endAt}}</li>
+      {{/each}}
+      </ol>
+    </div>
+  </li>
+  {{/each}}
+</ul>
+
+</template>
