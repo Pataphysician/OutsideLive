@@ -19,13 +19,10 @@ Template.stages.updateStages = function() {
   var stages = Template.stages.allStages();
   stages.forEach(function(stage) {
     var stageID = stage._id
-    console.log(stage._id);
     current_performance = Template.stages.stageCurrentPerformance(stage);
-    console.log("Current Performance");
-    console.log(current_performance);
     if(current_performance) {
       var current_song_id = _.last(current_performance.setList);
-      var current_song = Songs.findOne({_id: current_song_id});
+      var current_song = Songs.findOne({_id: current_song_id});gi
       var percentage_complete = OutsideLive.percentageComplete(current_performance);
       var minutes_left = OutsideLive.setMinutesRemaining(current_performance);
       Stages.update({_id: stageID},
@@ -36,7 +33,6 @@ Template.stages.updateStages = function() {
           minutesLeft: minutes_left
         }
       })
-      console.log("updated stage ")
     }
   });
 
