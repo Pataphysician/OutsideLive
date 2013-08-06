@@ -1,11 +1,8 @@
-
+StagesCount = new Meteor.Collection('stages-count');
 
 if (Meteor.isClient) {
   
   Meteor.startup(function() {
-    // client: subscribe to the count for the current room
-      //Meteor.subscribe("number-of-stages");
-      OutsideLive.createStages();
 
       Meteor.setInterval(function() {
         //update the attributes for the stages every 30 seconds
@@ -69,7 +66,31 @@ if (Meteor.isClient) {
     //Data subscription complete. All data is downloaded
     
   });
+  var slug_names = ["lands-end", "sutro", "twin-peaks", 
+    "panhandle", "the-dome", "the-barbary"];
+  var stage_names = ["Lands End", "Sutro", "Twin Peaks", 
+    "Panhandle", "The Dome", "The Barbary"];
 
+  var stages = Stages.find({}).fetch();
+  var counts = Stages.find({}).count();
+  console.log("number of stages: ", counts);
+  if(counts !== undefined) {
+    console.log("checking zero");
+    if (counts != 0 || Session.get('stages_set')) {
+      
+    } else {
+      _.each(stage_names, function(stage_name, index) {
+        Stages.insert({
+          slug: slug_names[index],
+          name: stage_name
+        });
+      });
+      Session.set('stages_set', true)
+    }
+    console.log("The great stage count: ", Stages.find({}).count());
+  }
+
+ 
   Template.adminPanelLink.events({
     'click a.admin-panel' : function () {
       Session.set("adminPanel", true);
@@ -92,12 +113,6 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
   
-  Meteor.startup(function() {
-    
-    // server: publish the current size of a collection
-    
-  });
-
   // Meteor.publish("number-of-stages", function () {
   //     var self = this;
   //     var count = 0;
@@ -131,6 +146,59 @@ if (Meteor.isServer) {
   //       handle.stop();
   //     });
   //   });
+
+  /*
+  Meteor.publishCounter = function(params) {
+    var collection, count, handle, id, init, pub,
+      _this = this;
+    count = 0;
+    init = true;
+    id = Random.id();
+    pub = params.handle;
+    collection = params.collection;
+    console.log("publishCounter");
+    handle = collection.find(params.filter, params.options).observeChanges({
+      added: function() {
+        count++;
+        if (!init) {
+          return pub.changed(params.name, id, {
+            count: count
+          });
+        }
+      },
+      removed: function() {
+        count--;
+        if (!init) {
+          return pub.changed(params.name, id, {
+            count: count
+          });
+        }
+      }
+    });
+    init = false;
+    pub.added(params.name, id, {
+      count: count
+    });
+    pub.ready();
+    return pub.onStop(function() {
+      return handle.stop();
+    });
+  };
+  Meteor.publish('stages-count', function(params) {
+    if (params == null) {
+      params = {};
+    }
+    console.log('AYOOOOO');
+    return Meteor.publishCounter({
+      handle: this,
+      name: 'stages-count',
+      collection: Stages,
+      filter: params
+    });
+  });
+
+  */ 
+
   
   Meteor.methods({
     getArtistImage: function(performance) {

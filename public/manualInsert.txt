@@ -1,3 +1,44 @@
+///////////START HERE CASE////////////
+//chrome dev tool:
+
+Stages.find().fetch()
+//dropdown to stageID
+//Enter
+
+//Copy performance template
+Performances.insert({
+	artist: "Vampire Weekend",
+	endTime: 200,
+	isCurrent: true,
+	setList: [],
+	stageID: "9kdSqiqygvoScfs7j",
+	startTime: 100
+});
+//Update startTime, endTime, stageId
+//enter
+
+//terminal: 
+//copy initital song
+curl -d "{\"stage\": \"stage#2\",\"artist\": \"Vampire Weekend\",\"name\": \"Campus\",\"genre\": \"Indie Smop\",\"lastSong\": \"init\",\"mood\": \"Berkley\"}" http://localhost:3000/collectionapi/songs
+//enter
+
+//copy next song after a minute or two
+curl -d "{\"stage\": \"stage#2\",\"artist\": \"Vampire Weekend\",\"name\": \"Wakka Kassa Shit\",\"genre\": \"Indie Smop\",\"lastSong\": \"Campus\",\"mood\": \"Berkley\"}" http://localhost:3000/collectionapi/songs
+//enter
+
+//copy next song after a minute or two
+curl -d "{\"stage\": \"stage#2\",\"artist\": \"Vampire Weekend\",\"name\": \"Step\",\"genre\": \"Indie Smop\",\"lastSong\": \"Wakka Kassa Shit\",\"mood\": \"Berkley\"}" http://localhost:3000/collectionapi/songs
+
+
+
+
+
+
+
+
+
+
+
 New perforance on Sutro from 10am to 12pm, also its assuming current. set: start, end, stageID.
 Performances.insert({
 	artist: "Vampire Weekend",
@@ -29,33 +70,3 @@ curl -d "{\"stage\": \"stage#2\",\"artist\": \"Vampire Weekend\",\"name\": \"Wak
 
 curl -d "{\"stage\": \"stage#2\",\"artist\": \"Vampire Weekend\",\"name\": \"Step\",\"genre\": \"Indie Smop\",\"lastSong\": \"Wakka Kassa Shit\",\"mood\": \"Berkley\"}" http://localhost:3000/collectionapi/songs
 
-///////////START HERE CASE////////////
-//chrome dev tool:
-
-Stages.find().fetch()
-//dropdown to stageID
-//Enter
-
-//Copy performance template
-Performances.insert({
-	artist: "Vampire Weekend",
-	endTime: 200,
-	isCurrent: true,
-	setList: [],
-	stageID: "9kdSqiqygvoScfs7j",
-	startTime: 100
-});
-//Update startTime, endTime, stageId
-//enter
-
-//terminal: 
-//copy initital song
-curl -d "{\"stage\": \"stage#2\",\"artist\": \"Vampire Weekend\",\"name\": \"Campus\",\"genre\": \"Indie Smop\",\"lastSong\": \"init\",\"mood\": \"Berkley\"}" http://localhost:3000/collectionapi/songs
-//enter
-
-//copy next song after a minute or two
-curl -d "{\"stage\": \"stage#2\",\"artist\": \"Vampire Weekend\",\"name\": \"Wakka Kassa Shit\",\"genre\": \"Indie Smop\",\"lastSong\": \"Campus\",\"mood\": \"Berkley\"}" http://localhost:3000/collectionapi/songs
-//enter
-
-//copy next song after a minute or two
-curl -d "{\"stage\": \"stage#2\",\"artist\": \"Vampire Weekend\",\"name\": \"Step\",\"genre\": \"Indie Smop\",\"lastSong\": \"Wakka Kassa Shit\",\"mood\": \"Berkley\"}" http://localhost:3000/collectionapi/songs

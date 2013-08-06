@@ -1,3 +1,4 @@
+/*
 Template.performance.events({
   'click input' : function () {
     function getRandomInt (min, max) {
@@ -104,36 +105,8 @@ Template.performance.events({
     	//Meteor.render();
     }
     $(".stuff").html(Meteor.render(Template.stages));
-    //Template.stages.currentPerformances();
-    // } else if(choice === 5) {
-    // 	Songs.insert({
-    //         name: obj.name,
-    //         artist: obj.artist,
-    //         stage: Stages.findOne({name: OutsideLive.iOSStageToWeb(obj.stage)}),
-    //         perfomance: Performances.findOne({artist: obj.artist}),
-            
-    //         lastSong: obj.lastSong,
-    //         startedAt: OutsideLive.currentTime(),
-    //         endAt: -1,
-    //         timestamp: new Date().getTime()
-    //       });
-    // } else {
-    // 	Songs.insert({
-    //         name: obj.name,
-    //         artist: obj.artist,
-    //         stage: Stages.findOne({name: OutsideLive.iOSStageToWeb(obj.stage)}),
-    //         perfomance: Performances.findOne({artist: obj.artist}),
-           
-    //         lastSong: obj.lastSong,
-    //         startedAt: OutsideLive.currentTime(),
-    //         endAt: -1,
-    //         timestamp: new Date().getTime()
-    //       });
-    // }
 
   }
 });
+*/
 
-// Template.performance.performances = function() {
-// 	return Performances.find({}).fetch();
-// };
