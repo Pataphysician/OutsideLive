@@ -21,15 +21,22 @@ Meteor.startup(function () {
         POST: function(obj) {
           console.log(obj);
           if(Songs.find({artist: obj.artist}).count() !== 0) {
-            var lastSong = Songs.findOne({artist: obj.artist, startedAt: {$lte: OutsideLive.currentTime()}}, {sort: {startedAt: -1}});
-            console.log("BLURB", lastSong._id);
-            Songs.update({_id: lastSong._id},{$set: {endAt: OutsideLive.currentTime() - 1}});
-          }
+            OutsideLive.setEndTime(Songs.findOne({name: lastName}));
+          } 
+          // else {
+          //   OutsideLive.setEndTime({})
+          // }
+
+          // if(Songs.find({artist: obj.artist}).count() !== 0) {
+          //   var lastSong = Songs.findOne({artist: obj.artist, startedAt: {$lte: OutsideLive.currentTime()}}, {sort: {startedAt: -1}});
+          //   console.log("BLURB", lastSong._id);
+          //   Songs.update({_id: lastSong._id},{$set: {endAt: OutsideLive.currentTime() - 1}});
+          // }
           Songs.insert({
             name: obj.name,
             artist: obj.artist,
-            stage: Stages.findOne({name: OutsideLive.iOSStageToWeb(obj.stage)}),
-            perfomance: Performances.findOne({artist: obj.artist}),
+            stageId: Stages.findOne({name: OutsideLive.iOSStageToWeb(obj.stage)})._id,
+            perfomanceId: Performances.findOne({artist: obj.artist})._id,
             genre: obj.genre,
             mood: obj.mood,
             lastSong: obj.lastSong,

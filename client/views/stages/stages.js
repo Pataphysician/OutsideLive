@@ -30,6 +30,11 @@ Template.stages.currentPerformances = function() {
   return stages;
 };
 
+Template.stages.realTime = function() {
+  //returns the current performance of each stage
+  return Performances.find({current: true});
+};
+
 
 /*
 $(function() {
