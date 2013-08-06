@@ -7,6 +7,11 @@ if (Meteor.isClient) {
       //Meteor.subscribe("number-of-stages");
       OutsideLive.createStages();
 
+      Meteor.setInterval(function() {
+        //update the attributes for the stages every 30 seconds
+        Template.stages.stages();
+      }, 30000);
+
       //demo click has three songs, others have one current one
       //make time of shit between 12pm and 5pm
       //manual setting of performances
@@ -89,7 +94,6 @@ if (Meteor.isServer) {
   
   Meteor.startup(function() {
     
-    
     // server: publish the current size of a collection
     
   });
@@ -127,5 +131,37 @@ if (Meteor.isServer) {
   //       handle.stop();
   //     });
   //   });
+  
+  Meteor.methods({
+    getArtistImage: function(performance) {
+    url = "http://developer.echonest.com/api/v4/artist/images"
+
+    Meteor.http.call("GET", url, 
+      {params: {
+        api_key: "FJIRSCGH8XZMYGTBT",
+        name: performance.artist,
+      }},
+      function(error, result) {
+        var imageURL = result.data.response.images[0].url;
+        performance.imageURL = imageURL;
+        return imageURL;
+      })
+  },
+
+  getArtistBio: function(performance) {
+    url = "http://developer.echonest.com/api/v4/artist/biographies"
+
+    Meteor.http.call("GET", url,
+      {params: {
+        api_key: "FJIRSCGH8XZMYGTBT",
+        name: performance.artist,
+      }},
+      function(error, result) {
+        var bio = result.data.response.biographies[0].text;
+        performance.bio = bio;
+        return bio;
+      })
+  },
+  });
 
 };

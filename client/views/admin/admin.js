@@ -18,8 +18,6 @@ Template.admin.events({
       stageID: stage_id,
       startTime: start_time,
       endTime: end_time,
-      //performances have an "isCurrent" attribute to start with
-      isCurrent: OutsideLive.isCurrent(start_time, end_time),
       setList: [],
     })
 

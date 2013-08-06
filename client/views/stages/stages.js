@@ -3,11 +3,9 @@ Template.stages.events({
     event.preventDefault();
     var stageID = $(event.target).closest("a").attr('data-id');
     var stage = Stages.findOne({_id: stageID});
-    var currentPerformance = Performances.findOne({
-      stageID: stageID, 
-      startTime: {$lte: OutsideLive.currentTime()},
-      endTime: {$gte: OutsideLive.currentTime()}
-    });
+    var currentPerformance = Template.stages.stageCurrentPerformance(stage);
+    Meteor.call("getArtistBio", currentPerformance);
+    Meteor.call("getArtistImage", currentPerformance);
     Session.set("currentStage", stage);
     Session.set('currentPerformance', currentPerformance);
   }
@@ -15,28 +13,35 @@ Template.stages.events({
 
 Template.stages.stages = function() {
   stages = Template.stages.allStages();
-  _.each(stages, function(stage) {
-    currentPerformance = Performances.findOne({
-      stageID: stage._id, 
-      startTime: {$lte: OutsideLive.currentTime()},
-      endTime: {$gte: OutsideLive.currentTime()}
+  stages.forEach(function(stage) {
+      currentPerformance = Template.stages.stageCurrentPerformance(stage);
+      stage.currentPerformance = currentPerformance;
+      if(currentPerformance) {
+        stage.currentSong = _.last(currentPerformance.setList);
+        stage.percentageComplete = OutsideLive.percentageComplete(currentPerformance);
+        stage.minutesLeft = OutsideLive.setMinutesRemaining(currentPerformance);
+      }
     });
-    stage.currentPerformance = currentPerformance;
-    if(currentPerformance) {
-      stage.currentSong = _.last(currentPerformance.setList);
-      stage.percentageComplete = OutsideLive.percentageComplete(currentPerformance);
-      stage.minutesLeft = OutsideLive.setMinutesRemaining(currentPerformance);
-    }
+  //when this function runs, the session is reset with the new information
+  Session.set('stages', stages);
+  //the template will by default "listen" to changes in the session, so the view will
+  //re-render when anything in the session changes
+  //in this case, the "minutes left" changes everytime we call this function, which
+  //is updated accordingly in the view
+  return Session.get('stages');
+};
+
+Template.stages.stageCurrentPerformance = function(stage) {
+  var stageID = stage._id
+  var currentTime = OutsideLive.currentTime();
+  var currentPerformance = Performances.findOne({
+    stageID: stageID, 
+    startTime: {$lte: currentTime},
+    endTime: {$gte: currentTime}
   });
 
-  return stages;
-};
-
-Template.stages.realTime = function() {
-  //returns the current performance of each stage
-  return Performances.find({current: true});
-};
-
+  return currentPerformance;
+},
 
 Template.stages.allStages = function() {
   return Stages.find().fetch();
