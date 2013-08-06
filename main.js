@@ -3,6 +3,44 @@
 if (Meteor.isClient) {
   
   Meteor.startup(function() {
+  
+  
+		var stages = $('#stages').find('.stage');
+		var n = 1;
+		
+		var windowHeightTop = ($(window).height() -44);
+		
+		var sixth = (windowHeightTop / 6) + 'px';
+		stages.css({'height':sixth,'line-height':sixth});
+		
+		$(document).bind('openingEffect', addEffectStepping);
+	
+		setTimeout(function() {
+			$('body').addClass('loaded');
+			$(document).trigger('openingEffect');
+			
+	    }, 600);
+	    
+	    function addEffectStepping(){
+	        setTimeout(function() {
+	           $('#stages').find('.stage:nth-child(' + n +')').addClass('show');
+	            n++;
+	
+	            if (n == length){
+	                n = 0;
+	            };
+	            
+	            addEffectStepping();
+	
+	        }, 200);
+	    }
+
+  
+  
+  
+  
+  
+  
     // client: subscribe to the count for the current room
       //Meteor.subscribe("number-of-stages");
       OutsideLive.createStages();

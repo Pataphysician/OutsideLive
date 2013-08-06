@@ -177,6 +177,7 @@ header{
 }
 .stage{
 	position: relative;
+	min-height: 64px;
 	.artist{
 		text-decoration: none;
 		.clearfix;
@@ -215,7 +216,7 @@ header{
 		display: inline-block;
 		vertical-align: middle;
 		font-family: Boogaloo;
-		margin: 0 0 0 10px;
+		-webkit-transform: translate(10px, 0);
 		opacity: 0;
 		-webkit-transition: all 400ms linear;
 		.band{
@@ -270,7 +271,7 @@ header{
 	}
 	.text{
 		opacity: 1;
-		margin: 0;
+		-webkit-transform: translate(0, 0);
 	}
 }
 
@@ -460,12 +461,14 @@ header{
 
 body{
 	-webkit-transition: all 400ms linear;
-}
-body.loading{
 	background: url('/splash.png') #e75a46;
 	background-size: 100%;
 	opacity: 0;
 	.speed-up;
+}
+body.loaded{
+	background: none;
+	opacity: 1;
 }
 .stage{
 	-webkit-transition: all 200ms linear;
@@ -498,7 +501,7 @@ body.loading{
 		background: @color;
 	}
 	.image .icon{
-		background: url('/stage-lands-end.png');
+		background: url('https://s3.amazonaws.com/watson-app/stage-lands-end.png');
 		background-size: 100%;
 	}
 }
@@ -516,7 +519,7 @@ body.loading{
 		background: @color;
 	}
 	.image .icon{
-		background: url('/stage-sutro.png');
+		background: url('https://s3.amazonaws.com/watson-app/stage-sutro.png');
 		background-size: 100%;
 	}
 }
@@ -535,7 +538,7 @@ body.loading{
 		background: @color;
 	}
 	.image .icon{
-		background: url('/stage-twin-peaks.png');
+		background: url('https://s3.amazonaws.com/watson-app/stage-twin-peaks.png');
 		background-size: 100%;
 	}
 }
@@ -553,7 +556,7 @@ body.loading{
 		background: @color;
 	}
 	.image .icon{
-		background: url('/stage-panhandle.png');
+		background: url('https://s3.amazonaws.com/watson-app/stage-panhandle.png');
 		background-size: 100%;
 	}
 }
@@ -571,7 +574,7 @@ body.loading{
 		background: @color;
 	}
 	.image .icon{
-		background: url('/stage-dome.png');
+		background: url('https://s3.amazonaws.com/watson-app/stage-dome.png');
 		background-size: 100%;
 	}
 }
@@ -589,7 +592,7 @@ body.loading{
 		background: @color;
 	}
 	.image .icon{
-		background: url('/stage-barbary.png');
+		background: url('https://s3.amazonaws.com/watson-app/stage-barbary.png');
 		background-size: 100%;
 	}
 }
