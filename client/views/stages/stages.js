@@ -3,11 +3,9 @@ Template.stages.events({
     event.preventDefault();
     var stageID = $(event.target).closest("a").attr('data-id');
     var stage = Stages.findOne({_id: stageID});
-    var currentPerformance = Performances.findOne({
-      stageID: stageID, 
-      startTime: {$lte: OutsideLive.currentTime()},
-      endTime: {$gte: OutsideLive.currentTime()}
-    });
+    var currentPerformance = Template.stages.stageCurrentPerformance(stage);
+    Meteor.call("getArtistBio", currentPerformance);
+    Meteor.call("getArtistImage", currentPerformance);
     Session.set("currentStage", stage);
     Session.set('currentPerformance', currentPerformance);
   }
@@ -16,11 +14,7 @@ Template.stages.events({
 Template.stages.stages = function() {
   stages = Template.stages.allStages();
   _.each(stages, function(stage) {
-    currentPerformance = Performances.findOne({
-      stageID: stage._id, 
-      startTime: {$lte: OutsideLive.currentTime()},
-      endTime: {$gte: OutsideLive.currentTime()}
-    });
+    currentPerformance = Template.stages.stageCurrentPerformance(stage);
     stage.currentPerformance = currentPerformance;
     if(currentPerformance) {
       stage.currentSong = _.last(currentPerformance.setList);
@@ -32,6 +26,17 @@ Template.stages.stages = function() {
   return stages;
 };
 
+Template.stages.stageCurrentPerformance = function(stage) {
+  var stageID = stage._id
+  var currentTime = OutsideLive.currentTime();
+  var currentPerformance = Performances.findOne({
+    stageID: stageID, 
+    startTime: {$lte: currentTime},
+    endTime: {$gte: currentTime}
+  });
+
+  return currentPerformance;
+},
 
 Template.stages.allStages = function() {
   return Stages.find().fetch();

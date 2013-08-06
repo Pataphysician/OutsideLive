@@ -127,5 +127,37 @@ if (Meteor.isServer) {
   //       handle.stop();
   //     });
   //   });
+  
+  Meteor.methods({
+    getArtistImage: function(performance) {
+    url = "http://developer.echonest.com/api/v4/artist/images"
+
+    Meteor.http.call("GET", url, 
+      {params: {
+        api_key: "FJIRSCGH8XZMYGTBT",
+        name: performance.artist,
+      }},
+      function(error, result) {
+        var imageURL = result.data.response.images[0].url;
+        performance.imageURL = imageURL;
+        return imageURL;
+      })
+  },
+
+  getArtistBio: function(performance) {
+    url = "http://developer.echonest.com/api/v4/artist/biographies"
+
+    Meteor.http.call("GET", url,
+      {params: {
+        api_key: "FJIRSCGH8XZMYGTBT",
+        name: performance.artist,
+      }},
+      function(error, result) {
+        var bio = result.data.response.biographies[0].text;
+        performance.bio = bio;
+        return bio;
+      })
+  },
+  });
 
 };
