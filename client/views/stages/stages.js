@@ -60,6 +60,38 @@ Template.stages.allStages = function() {
   return Stages.find().fetch();
 };
 
+Meteor.startup(function () {
+
+	var stages = $('#stages').find('.stage');
+	var n = 1;
+	
+	$(document).bind('openingEffect', addEffectStepping);
+
+	var sixth = ($(window).height() - 44) / 6 + 'px';
+	stages.css({'height':sixth,'line-height':sixth})
+
+	setTimeout(function() {
+		$('body').removeClass('loading');
+		$(document).trigger('openingEffect');
+		
+    }, 600);
+    
+    function addEffectStepping(){
+        setTimeout(function() {
+            $('#stages').find('.stage:nth-child(' + n +')').addClass('show');
+            n++;
+
+            if (n == length){
+                n = 0;
+            };
+            
+            addEffectStepping();
+
+        }, 200);
+    }
+
+});
+
 /*
 $(function() {
 

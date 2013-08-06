@@ -176,12 +176,7 @@ header{
 	padding: 44px 0 0 0;
 }
 .stage{
-	height: 69px;
-	overflow: hidden;
 	position: relative;
-	&:last-child{
-		height: 71px;
-	}
 	.artist{
 		text-decoration: none;
 		.clearfix;
@@ -196,7 +191,14 @@ header{
 	.image{
 		height: 62px;
 		width: 62px;
-		float: left;
+		display: inline-block;
+		vertical-align: middle;
+		padding-bottom: 1.5%;
+		-webkit-transform:rotate(-45deg) scale(.4);
+		opacity: 0;
+		
+		-webkit-transition: all 200ms linear;
+		
 		.icon{
 			margin: 11px;
 			width: 40px;
@@ -210,16 +212,18 @@ header{
 		}
 	}
 	.text{
-		height: 56px;
-		float: left;
+		display: inline-block;
+		vertical-align: middle;
 		font-family: Boogaloo;
+		margin: 0 0 0 10px;
+		opacity: 0;
+		-webkit-transition: all 400ms linear;
 		.band{
 			font-size: 13px;
 			display: block;
 			-webkit-font-smoothing: antialiased;
 			font-family: helvetica;
 			line-height: 14px;
-			margin: 12px 0 0;
 			width: 240px;
 			white-space: nowrap;
 			overflow: hidden;
@@ -235,32 +239,38 @@ header{
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
+			padding-bottom: 3%;
 		}
 	}
 	.time{
 		position: absolute;
 		bottom: 0;
-		height: 8px;
+		height: 2px;
 		width: 100%;
+		z-index: 3;
 		.bar{
 			background: #ccc;
 			position: relative;
 			height: 100%;
 		}
-		.label{
-			font-size: 6px;
-			line-height: 10px;
-			text-transform: uppercase;
-			-webkit-font-smoothing: antialiased;
-			font-family: helvetica;
-			letter-spacing: 1px;
+		.song-dot{
+			height: 6px;
+			width: 6px;
+			border-radius: 3px;
 			position: absolute;
-			color: rgba(255,255,255,.7);
-			right: 2px;
-			margin: -1px 0 0 ;
-			width: 100%;
-			text-align: right;
+			top: -2px;
 		}
+	}
+}
+
+.show{
+	.image{
+		-webkit-transform:rotate(0deg) scale(1);
+		opacity: 1;
+	}
+	.text{
+		opacity: 1;
+		margin: 0;
 	}
 }
 
@@ -322,20 +332,6 @@ header{
 				background: #ccc;
 				position: relative;
 				height: 100%;
-			}
-			.label{
-				font-size: 6px;
-				line-height: 10px;
-				text-transform: uppercase;
-				-webkit-font-smoothing: antialiased;
-				font-family: helvetica;
-				letter-spacing: 1px;
-				position: absolute;
-				color: rgba(255,255,255,.7);
-				right: 2px;
-				margin: -1px 0 0 ;
-				width: 100%;
-				text-align: right;
 			}
 		}
 		.song-list{
@@ -495,7 +491,10 @@ body.loading{
 	a{
 		color: @color;
 	}
-	.bar{
+	.time{
+		background: fade(@color, 20%);
+	}
+	.bar, .song-dot{
 		background: @color;
 	}
 	.image .icon{
@@ -510,7 +509,10 @@ body.loading{
 	a{
 		color: @color;
 	}
-	.bar{
+	.time{
+		background: fade(@color, 30%);
+	}
+	.bar, .song-dot{
 		background: @color;
 	}
 	.image .icon{
@@ -526,7 +528,10 @@ body.loading{
 	a{
 		color: @color;
 	}
-	.bar{
+	.time{
+		background: fade(@color, 20%);
+	}
+	.bar, .song-dot{
 		background: @color;
 	}
 	.image .icon{
@@ -541,7 +546,10 @@ body.loading{
 	a{
 		color: @color;
 	}
-	.bar{
+	.time{
+		background: fade(@color, 25%);
+	}
+	.bar, .song-dot{
 		background: @color;
 	}
 	.image .icon{
@@ -556,7 +564,10 @@ body.loading{
 	a{
 		color: @color;
 	}
-	.bar{
+	.time{
+		background: fade(@color, 25%);
+	}
+	.bar, .song-dot{
 		background: @color;
 	}
 	.image .icon{
@@ -571,11 +582,18 @@ body.loading{
 	a{
 		color: @color;
 	}
-	.bar{
+	.time{
+		background: fade(@color, 20%);
+	}
+	.bar, .song-dot{
 		background: @color;
 	}
 	.image .icon{
 		background: url('/stage-barbary.png');
 		background-size: 100%;
 	}
+}
+
+[name="search"]{
+	display: none;
 }
