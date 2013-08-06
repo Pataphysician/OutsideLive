@@ -1,4 +1,17 @@
 <template name="performance">
-	Next Live Song!
-  <input type="button" value="Click" />
+  <li class="stage" id="{{stage.slug}}">
+    <a href="#" class="show-stage artist full" data-id="{{stage.name}}" data-color="#006d4c">
+      
+      <div class="image"><div class="icon"></div></div>
+      <div class="text">
+        <span class="band">{{artist}}</span>
+        <span class="song">{{currentSong.name}}</span>
+      </div>
+      <div class="time" data-start="{{startTime}}" data-end="{{endTime}}">
+        <div class="bar" style="width: {{remaining}}%"><div class="label">
+          {{minutesLeft this}} Minutes Left</div></div>
+      </div>
+    
+    </a>
+  </li>
 </template>

@@ -10,24 +10,29 @@ Template.stage.stage = function() {
 };
 
 
-
 Template.stage.currentPerformance = function() {
-  var stage = Session.get('currentStage');
-  console.log('currentStage: ',Session.get('currentStage'));
-  // var currentPerformance = OutsideLive.currentPerformance(stage)[0];
-  // console.log("current Perf:",currentPerformance);
+  var performance = Session.get('currentPerformance');
   return Session.get('currentPerformance');
 };
 
-Template.stage.performanceSet = function() {
-  var currentPerformance = Session.get('currentPerformance');
-  setResults = Songs.find({artist: Session.get('currentPerformance').artist, startAt: {$lte: OutsideLive.currentTime()}}, {sort: {startedAt: -1}}).fetch();
-  setResults.shift();
-  return setResults;
+Template.stage.setList = function() {
+  try {
+    return Template.stage.currentPerformance().setList;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+Template.stage.upcomingSongs = function() {
+  return Template.stage.currentPerformance().setList.slice(1);
 };
 
 Template.stage.currentSong = function() {
-  return Songs.findOne({artist: Session.get('currentPerformance').artist, startAt: {$lte: OutsideLive.currentTime()}}, {sort: {startedAt: -1}});
+  try {
+    return _.last(Template.stage.currentPerformance().setList);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 //grab current time

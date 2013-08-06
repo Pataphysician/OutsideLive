@@ -6,7 +6,8 @@ Template.admin.events({
     var start_time_str = $("input[name='start_time']").val();
     var end_time_str = $("input[name='end_time']").val();
     var stage_name = $('select').val();
-    var stage = Stages.find({name: stage_name}).fetch()[0];
+    var stage = Stages.findOne({name: stage_name});
+    var stage_id = stage._id;
 
     var start_time = Template.admin.parseTime(start_time_str);
     var end_time = Template.admin.parseTime(end_time_str);
@@ -14,9 +15,12 @@ Template.admin.events({
     Performances.insert({
       day: day,
       artist: artist,
-      stage: stage,
+      stageID: stage_id,
       startTime: start_time,
       endTime: end_time,
+      //performances have an "isCurrent" attribute to start with
+      isCurrent: OutsideLive.isCurrent(start_time, end_time),
+      setList: [],
     })
 
     Session.set("adminPanel", false);

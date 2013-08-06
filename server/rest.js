@@ -20,9 +20,7 @@ Meteor.startup(function () {
       before: {  // This methods, if defined, will be called before the POST/GET/PUT/DELETE actions are performed on the collection. If the function returns false the action will be canceled, if you return true the action will take place.
         POST: function(obj) {
           console.log(obj);
-          if(Songs.find({artist: obj.artist}).count() !== 0) {
-            OutsideLive.setEndTime(Songs.findOne({name: lastName}));
-          } 
+         
           // else {
           //   OutsideLive.setEndTime({})
           // }
@@ -31,19 +29,48 @@ Meteor.startup(function () {
           //   var lastSong = Songs.findOne({artist: obj.artist, startedAt: {$lte: OutsideLive.currentTime()}}, {sort: {startedAt: -1}});
           //   console.log("BLURB", lastSong._id);
           //   Songs.update({_id: lastSong._id},{$set: {endAt: OutsideLive.currentTime() - 1}});
-          // }
-          Songs.insert({
-            name: obj.name,
-            artist: obj.artist,
-            stageId: Stages.findOne({name: OutsideLive.iOSStageToWeb(obj.stage)})._id,
-            perfomanceId: Performances.findOne({artist: obj.artist})._id,
-            genre: obj.genre,
-            mood: obj.mood,
-            lastSong: obj.lastSong,
-            startedAt: OutsideLive.currentTime(),
-            endAt: -1,
-            timestamp: new Date().getTime()
-          });
+          // )
+
+          try {
+            var song_attrs = {
+              name: obj.name,
+              artist: obj.artist,
+              stageId: Stages.findOne({name: OutsideLive.iOSStageToWeb(obj.stage)})._id,
+              perfomanceId: Performances.findOne({artist: obj.artist})._id,
+              genre: obj.genre,
+              mood: obj.mood,
+              lastSong: obj.lastSong,
+              startedAt: OutsideLive.currentTime(),
+              endAt: -1,
+              timestamp: new Date().getTime()
+            };
+
+
+            Songs.insert(song_attrs);
+
+
+            
+             // var performance = Performances.findOne({artist: obj.artist});
+             // performance.setList.push(newSong);
+
+            var newSong = Songs.findOne({
+              name: obj.name,
+              artist: obj.artist
+            });
+
+            Performances.update({artist: obj.artist}, {$push: {setList: newSong._id}});
+            
+            if(Songs.find({artist: obj.artist}).count() !== 0) {
+              OutsideLive.setEndTime(newSong)
+              //newSong.endAt = OutsideLive.setEndTime(newSong);
+            } 
+          } catch(err) {
+            console.log("error: ",err);
+            console.log("no performance, song not added. Trying to match to: ", obj.artist);
+          }
+
+
+          // Songs.findOne({name: lastName})
           //var lastSong = Songs.findOne({artist: obj.artist, startAt: {$lte: OutsideLive.currentTime()}}, {sort: {startedAt: -1}});
           //console.log("BLURB", lastSong);
           
