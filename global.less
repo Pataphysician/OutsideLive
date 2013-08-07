@@ -305,7 +305,6 @@ header{
 	}
 	.band-card{
 		margin: 0 10px 10px;
-		background: #fff;
 		border-radius: 4px;
 		.image{
 			width: 100%;
@@ -324,68 +323,74 @@ header{
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
+			color: #fff;
+			border-radius: 0 0 4px 4px;
+			-webkit-font-smoothing: antialiased;
 		}
-		.time{
-			height: 8px;
-			width: 100%;
-			background: #ccc;
-			.bar{
-				background: #ccc;
-				position: relative;
-				height: 100%;
-			}
-		}
+
 		.song-list{
 			li{
-				display: none;
 				position: relative;
 				height: 34px;
 				line-height: 34px;
-				padding: 0 8px;
 				-webkit-font-smoothing: antialiased;
 				.clearfix;
-				&:last-child{
-					display: block;
-				}
 			}
 			strong{
-				float: left;
-			}
-			span{
 				float: right;
 			}
-			.icon{
-				display: block;
+			span{
+				float: left;
+				margin: 0 0 0 15px;
+			}
+			.buy{
+				float: right;
+				height: 16px;
+				line-height: 16px;
+				font-size: 9px;
+				text-transform: uppercase;
+				padding: 0 3px;
+				.border-radius;
+				background: #333;
+				color: #fff;
+				text-decoration: none;
+				margin: 10px 0 0 4px;
+			}
+			.line{
+				width: 2px;
+				height: 100%;
+				background: #333;
+				margin: 0 0 0 6px;
 				position: absolute;
-				right: 22px;
-				top: 16px;
-				&:before {
-					content: '';
-					height: 2px;
-					width: 14px;
-					background: #999;
-					position: absolute;
-					-webkit-transform: rotate(45deg);
-					margin: 0 0 0 -9px;
-				}
-				&:after {
-					content: '';
-					height: 2px;
-					width: 14px;
-					background: #999;
-					position: absolute;
-					-webkit-transform: rotate(-45deg);
-					margin: 0 0 0;
+			}
+			.circle{
+				width: 6px;
+				height: 6px;
+				border-radius: 3px;
+				background: #333;
+				margin: -3px 0 0 4px;
+				top: 50%;
+				position: absolute;
+			}
+			.current{
+				font-weight: bold;
+				.line{
+					height: 50%;
+					top: 50%;
 				}
 			}
-			&.open{
-				.icon:before{
-					margin: 0!important;
-				}
-				.icon:after{
-					margin: 0 0 0 -9px!important;
+			.past{
+				strong{
+					font-weight: normal;
 				}
 			}
+			li:last-child{
+				.line{
+					bottom: 50%;
+					height: 50%;
+				}
+			}
+
 		}
 	}
 	

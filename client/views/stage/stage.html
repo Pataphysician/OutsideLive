@@ -11,10 +11,12 @@
 		<div class="band-name">{{!currentPerformance.artist}} Vampire Weekend</div>
 		<ul class="song-list">
 		
-			<li class="current"><div class="circle"></div><span>23:03</span><strong>{{currentSong.name}}</strong></li>
+			<li class="current"><div class="line"></div><div class="circle"></div><span>23:03</span><a href="#" class="buy">BUY</a><strong>Current Song Name{{currentSong.name}}</strong></li>
+			<li class="past"><div class="line"></div><div class="circle"></div><span>0.00</span><a href="#" class="buy">BUY</a><strong>Past Song Name</strong></li>
+			<li class="past"><div class="line"></div><div class="circle"></div><span>0.00</span><a href="#" class="buy">BUY</a><strong>Past Song Name</strong></li>
 		
 			{{#each setList}}
-				<li class="past"><div class="circle"></div><span>{{startedAt}}</span><strong>{{name}}</strong></li>
+				<li class="past"><div class="line"></div><div class="circle"></div><span>{{startedAt}}</span><strong>{{name}}</strong></li>
 			{{/each}}
 			
 
