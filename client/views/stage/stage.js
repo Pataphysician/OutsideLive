@@ -5,6 +5,30 @@ Template.stage.events({
   },
 });
 
+Template.stage.helpers({
+  inHumanTime: function(time) {
+    return OutsideLive.inHumanTime(time);
+  },
+
+  //NOTE: Helpers are necessary to parse performance set lists (which are arrays)
+  // of song IDS and display the corresponding information for the song in the template
+  correspondingSongName: function(songID) {
+    var song = Songs.findOne({_id: songID});
+    return song.name;
+  },
+
+  correspondingSongStart: function(songID) {
+    var song = Songs.findOne({_id: songID});
+    return OutsideLive.inHumanTime(song.startedAt);
+  },
+
+  correspondingSongEnd: function(songID) {
+    var song = Songs.findOne({_id: songID});
+    return OutsideLive.inHumanTime(song.endAt);
+  },
+
+});
+
 Template.stage.stage = function() {
   return Session.get('currentStage');
 };
@@ -17,14 +41,15 @@ Template.stage.currentPerformance = function() {
 
 Template.stage.setList = function() {
   try {
-    var songIDs = Template.stage.currentPerformance().setList;
-    var songs = [];
-    _.each(songIDs, function(songID) {
-      var song = Songs.findOne({_id: songID});
-      songs.push(song);
-    });
+    return Template.stage.currentPerformance().setList;
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-    return songs;
+Template.stage.playedSongIDs = function() {
+  try {
+    return Template.stage.currentPerformance().setList.slice(0, -1);
   } catch (err) {
     console.log(err);
   }
@@ -61,7 +86,7 @@ Template.stage.upcomingPerformances = function() {
   if (currentPerformance) {
     var current_performance_end = currentPerformance.endTime;
     var upcoming_performances = Performances.find({
-      stage: stage.name,
+      stageID: stage._id,
       startTime: {$gte: current_performance_end}
     }, {
       sort: {startTime: 1},
@@ -86,4 +111,8 @@ Template.stage.currentArtistImageURL = function(performance) {
   var artist = performance.artist;
   performance.imageURL = OutsideLive.getArtistImage(artist);
   return artist.imageURL;
+};
+
+Template.stage.humanTime = function(time) {
+  return OutsideLive.inHumanTime(time);
 };
