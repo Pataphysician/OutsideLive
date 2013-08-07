@@ -42,8 +42,6 @@ if (Meteor.isClient) {
 		            addEffectStepping();
 	            };
 	            
-	            
-	
 	        }, 200);
 	    }
       var stage_names = ["Lands End", "Sutro", "Twin Peaks", 
@@ -116,32 +114,6 @@ if (Meteor.isClient) {
     //Data subscription complete. All data is downloaded
     
   });
-  var slug_names = ["lands-end", "sutro", "twin-peaks", 
-    "panhandle", "the-dome", "the-barbary"];
-  var stage_names = ["Lands End", "Sutro", "Twin Peaks", 
-    "Panhandle", "The Dome", "The Barbary"];
-
-  var stages = Stages.find({}).fetch();
-  var counts = Stages.find({}).count();
-  console.log("number of stages: ", counts);
-  if(counts !== undefined) {
-    console.log("checking zero");
-    if (counts != 0 || Session.get('stages_set')) {
-      
-    } else {
-      _.each(stage_names, function(stage_name, index) {
-        Stages.insert({
-          slug: slug_names[index],
-          name: stage_name,
-          curSong: null,
-          curPerformance: null,
-          curPerfPercent: null
-        });
-      });
-      Session.set('stages_set', true)
-    }
-    console.log("The great stage count: ", Stages.find({}).count());
-  }
 
  
   Template.adminPanelLink.events({
