@@ -54,6 +54,11 @@ Meteor.startup(function () {
               OutsideLive.setEndTime(newSong)
               //newSong.endAt = OutsideLive.setEndTime(newSong);
             } 
+            var stage_names = ["Lands End", "Sutro", "Twin Peaks", 
+              "Panhandle", "The Dome", "The Barbary"];
+            for(var i = 0; i < 6; i++) {
+              OutsideLive.updateStage(stage_names[i]);
+            }
           } catch(err) {
             console.log("error: ",err);
             console.log("no performance, song not added. Trying to match to: ", obj.artist);
