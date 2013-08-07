@@ -13,6 +13,12 @@ Template.stages.events({
   }
 });
 
+Template.stages.helpers({
+  percentUpToCurrentSong: function(stage) {
+    return _.last(stage.percentMarkers);
+  },
+});
+
 Template.stages.stages = function() {
   //  console.log('stages session: ', Session.get('stages'));
   // return Session.get('stages');
