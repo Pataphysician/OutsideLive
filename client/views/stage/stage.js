@@ -17,19 +17,35 @@ Template.stage.currentPerformance = function() {
 
 Template.stage.setList = function() {
   try {
-    return Template.stage.currentPerformance().setList;
+    var songIDs = Template.stage.currentPerformance().setList;
+    var songs = [];
+    _.each(songIDs, function(songID) {
+      var song = Songs.findOne({_id: songID});
+      songs.push(song);
+    });
+
+    return songs;
   } catch (err) {
     console.log(err);
   }
 };
 
 Template.stage.upcomingSongs = function() {
-  return Template.stage.currentPerformance().setList.slice(1);
+  var upcomingIDs = Template.stage.currentPerformance().setList.slice(1);
+  var upcomingSongs = [];
+  _.each(upcomingIDs, function(upcomingID) {
+    var upcomingSong = Songs.findOne({_id: upcomingID});
+    upcomingSongs.push(upcomingSong);
+  })
+  return upcomingSongs;
+
 };
 
 Template.stage.currentSong = function() {
   try {
-    return _.last(Template.stage.currentPerformance().setList);
+    var songID = _.last(Template.stage.currentPerformance().setList);
+    var song = Songs.findOne({_id: songID});
+    return song;
   } catch (err) {
     console.log(err);
   }
