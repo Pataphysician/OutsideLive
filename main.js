@@ -57,7 +57,7 @@ if (Meteor.isClient) {
         for(var i = 0; i < 6; i++) {
           OutsideLive.updateStage(stage_names[i]);
         }
-      }, 30000);
+      }, 10000);
 
       //demo click has three songs, others have one current one
       //make time of shit between 12pm and 5pm
@@ -136,6 +136,14 @@ if (Meteor.isClient) {
     return Session.get("adminPanel");
   });
 
+  Handlebars.registerHelper("mainPage", function() {
+    var main = (Session.get('currentStage'))
+    if (!main) {
+      return false;
+    }
+    return true;
+  })
+
   Meteor.methods({
     getArtistImage: function(performance) {
     var performanceID = performance._id
@@ -178,44 +186,17 @@ if (Meteor.isClient) {
       }
     },
   });
-
+  
 };
 
 if (Meteor.isServer) {
-  
-  // Meteor.publish("number-of-stages", function () {
-  //     var self = this;
-  //     var count = 0;
-  //     var initializing = true;
+  tweet = new Twitter();
 
-  //     var handle = Stages.find({}).observeChanges({
-  //       added: function (id) {
-  //         count++;
-  //         if (!initializing)
-  //           self.changed("counts", {count: count});
-  //       },
-  //       removed: function (id) {
-  //         count--;
-  //         self.changed("counts", {count: count});
-  //       }
-  //       // don't care about moved or changed
-  //     });
-
-  //     // Observe only returns after the initial added callbacks have
-  //     // run.  Now return an initial value and mark the subscription
-  //     // as ready.
-  //     initializing = false;
-  //     self.added("counts", {count: count});
-  //     console.log('sub ready');
-  //     self.ready();
-
-  //     // Stop observing the cursor when client unsubs.
-  //     // Stopping a subscription automatically takes
-  //     // care of sending the client any removed messages.
-  //     self.onStop(function () {
-  //       handle.stop();
-  //     });
-  //   });
+  Meteor.methods({
+    postSong: function() {
+      tweet.postTweet("testing #swag");
+    }
+  });
 
   /*
   Meteor.publishCounter = function(params) {

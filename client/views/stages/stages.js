@@ -8,7 +8,15 @@ Template.stages.events({
     Meteor.call("getArtistImage", currentPerformance);
     Session.set("currentStage", stage);
     Session.set('currentPerformance', currentPerformance);
+    //get current perf it will have an array percentMarkers, a percent is pushed everytime a new song is pushed
+    //interate through the percent markers. single stage view work can directly access. multi stage view needs multi dem array
   }
+});
+
+Template.stages.helpers({
+  percentUpToCurrentSong: function(stage) {
+    return _.last(stage.percentMarkers);
+  },
 });
 
 Template.stages.stages = function() {
