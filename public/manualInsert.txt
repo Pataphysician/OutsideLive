@@ -70,5 +70,7 @@ curl -d "{\"stage\": \"stage#2\",\"artist\": \"Vampire Weekend\",\"name\": \"Cam
 
 curl -d "{\"stage\": \"stage#2\",\"artist\": \"Vampire Weekend\",\"name\": \"Wakka Kassa Shit\",\"genre\": \"Indie Smop\",\"lastSong\": \"Campus\",\"mood\": \"Berkley\"}" http://localhost:3000/collectionapi/songs
 
-curl -d "{\"stage\": \"stage#2\",\"artist\": \"Vampire Weekend\",\"name\": \"Step\",\"genre\": \"Indie Smop\",\"lastSong\": \"Wakka Kassa Shit\",\"mood\": \"Berkley\"}" http://localhost:3000/collectionapi/songs
+curl -d "{\"stage\": \"stage#4\",\"artist\": \"Vampire Weekend\",\"name\": \"Cousins\",\"genre\": \"Indie Smop\",\"lastSong\": \"init\",\"mood\": \"Berkley\"}" http://watson.meteor.com/collectionapi/songs
+
+curl -d "{\"stage\": \"stage#6\",\"artist\": \"Phoenix\",\"name\": \"Drakkar Nior\",\"genre\": \"Indie Smop\",\"lastSong\": \"init\",\"mood\": \"Berkley\"}" http://watson.meteor.com/collectionapi/songs
 
