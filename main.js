@@ -17,13 +17,19 @@ if (Meteor.isClient) {
 			
 	    }, 600);
 	    
+	    stages.addClass('hidden');
+	    
 	    function addEffectStepping(){
+	    	
+	    	
 	        setTimeout(function() {
-	           $('#stages').find('.stage:nth-child(' + n +')').addClass('show');
+	        console.log('yep');
+	           $('#stages').find('.stage:nth-child(' + n +')').removeClass('hidden');
 	            n++;
 	
 	            if (n == length){
-	                n = 0;
+	                n = 1;
+	                $(document).unbind('openingEffect');
 	            };
 	            
 	            addEffectStepping();
