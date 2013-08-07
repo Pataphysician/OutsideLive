@@ -177,20 +177,5 @@ Template.stages.rendered = function () {
 	var windowHeightTop = ($(window).height() -44);
 	var sixth = (windowHeightTop / 6) + 'px';	
 	stages.css({'height':sixth,'line-height':sixth});
-	stages.addClass('hidden');
-		
-	$('#stages').removeClass('hidden');
-	
-	setTimeout(function() {
-		
-		var c = 0;
-		var interval = setInterval(function() { 
-	          $('#stages').find('.stage:nth-child(' + c + ')').removeClass('hidden');
-	          c++; 
-	          if(c > stages.length) clearInterval(interval);
-		}, 150);
-	
-	}, 200);                
-            
-        
+		              
 }

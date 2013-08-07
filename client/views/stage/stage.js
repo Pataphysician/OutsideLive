@@ -1,3 +1,18 @@
+Template.stage.events({
+  
+  /*
+"click .single" : function(event) {
+  	$('.single').find('.bubble').removeClass('visible');
+  },
+*/
+  
+  "click a.buy" : function(event) {
+  	var thisE = $(event.target);
+  	thisE.children('.bubble').addClass('visible');
+  },
+  
+});
+
 Template.stage.helpers({
   inHumanTime: function(time) {
     return OutsideLive.inHumanTime(time);
@@ -111,7 +126,5 @@ Template.stage.humanTime = function(time) {
 };
 
 Template.stage.rendered = function () { 
-	setTimeout(function() {
-		$('.single').removeClass('hidden');
-	}, 50);   
+  
 }

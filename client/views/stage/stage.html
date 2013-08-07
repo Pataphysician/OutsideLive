@@ -2,7 +2,7 @@
 
 {{rendered}}
 
-<div id="{{stage.slug}}" class="single hidden">
+<div id="{{stage.slug}}" class="single">
 
 	<div class="image">
 		<div class="icon"></div>
@@ -15,7 +15,12 @@
 		<ul class="song-list">
 		
 			<li class="current"><div class="line"></div><div class="circle"></div><span>{{currentSong.startedAt}}</span><a href="#" class="buy">BUY</a><strong>{{currentSong.name}}</strong></li>
-			<li class="past"><div class="line"></div><div class="circle"></div><span>0.00</span><a href="#" class="buy">BUY</a><strong>Past Song Name</strong></li>
+			<li class="past"><div class="line"></div><div class="circle"></div><span>0.00</span><a href="#" class="buy">BUY
+				<table><ul class="bubble">
+					<li><a href="#">Buy on iTunes</a></li>
+					<li><a href="#">Buy on Amazon</a></li>
+				</ul></table>
+			</a><strong>Past Song Name</strong></li>
 			<li class="past"><div class="line"></div><div class="circle"></div><span>0.00</span><a href="#" class="buy">BUY</a><strong>Past Song Name</strong></li>
 		
 

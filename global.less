@@ -361,6 +361,7 @@ header{
 				text-decoration: none;
 				margin: 10px 0 0 4px;
 				font-weight: bold;
+				position: relative;
 			}
 			.line{
 				width: 2px;
@@ -459,6 +460,49 @@ header{
 			line-height: 54px;
 			text-align: right;
 			font-weight: bold;
+		}
+	}
+	.bubble{
+		display: block;
+		padding: 10px 10px 0;
+		width: 150px;
+		right: 15px;
+		background: #666;
+		.border-radius;
+		position: absolute;
+		z-index: 9;
+		top: 50%;
+		margin: -40px 30px;
+		display: none;
+		&.visible{
+			display: block;
+		}
+		&:before{
+			content: '';
+			position: absolute;
+			width: 0px;
+			height: 0px;
+			border-style: solid;
+			border-width: 6px 0 6px 7px;
+			border-color: transparent transparent transparent #666;
+			right: -7px;
+			top: 50%;
+			margin: -4px 0 0 0;
+		}
+		li{
+			
+		}
+		a{
+			background: #333;
+			height: 24px;
+			line-height: 24px;
+			display: block;
+			font-size: 14px;
+			padding: 0 5px;
+			text-decoration: none;
+			color: #fff!important;
+			text-align: center;
+			.border-radius;
 		}
 	}
 }

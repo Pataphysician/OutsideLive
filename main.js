@@ -5,6 +5,20 @@ if (Meteor.isClient) {
   		window.scrollTo(0, 1);
 		
 		var n = 1;
+		var stages = $('#stages').find('.stage');
+		
+		$('#stages').removeClass('hidden');
+	
+		setTimeout(function() {
+			
+			var c = 0;
+			var interval = setInterval(function() { 
+		          $('#stages').find('.stage:nth-child(' + c + ')').removeClass('hidden');
+		          c++; 
+		          if(c > stages.length) clearInterval(interval);
+			}, 150);
+		
+		}, 200);  
 	    
 	    setTimeout(function() {
 		
