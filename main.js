@@ -30,12 +30,17 @@ if (Meteor.isClient) {
 	
 	        }, 200);
 	    }
-
-      Template.stages.updateStages();
+      var stage_names = ["Lands End", "Sutro", "Twin Peaks", 
+    "Panhandle", "The Dome", "The Barbary"];
+      for(var i = 0; i < 6; i++) {
+        OutsideLive.updateStage(stage_names[i]);
+      }
 
       Meteor.setInterval(function() {
         //update the attributes for the stages every 30 seconds
-        Template.stages.updateStages();
+        for(var i = 0; i < 6; i++) {
+          OutsideLive.updateStage(stage_names[i]);
+        }
       }, 30000);
 
       //demo click has three songs, others have one current one
@@ -111,7 +116,10 @@ if (Meteor.isClient) {
       _.each(stage_names, function(stage_name, index) {
         Stages.insert({
           slug: slug_names[index],
-          name: stage_name
+          name: stage_name,
+          curSong: null,
+          curPerformance: null,
+          curPerfPercent: null
         });
       });
       Session.set('stages_set', true)

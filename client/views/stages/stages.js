@@ -12,34 +12,46 @@ Template.stages.events({
 });
 
 Template.stages.stages = function() {
-   console.log('stages session: ', Session.get('stages'));
-  return Session.get('stages');
+  //  console.log('stages session: ', Session.get('stages'));
+  // return Session.get('stages');
+  return Stages.find().fetch();
 };
 
-Template.stages.updateStages = function() {
-  var stages = Template.stages.allStages();
-  stages.forEach(function(stage) {
-    var stageID = stage._id
-    current_performance = Template.stages.stageCurrentPerformance(stage);
-    if(current_performance) {
-      var current_song_id = _.last(current_performance.setList);
-      var current_song = Songs.findOne({_id: current_song_id});
-      var percentage_complete = OutsideLive.percentageComplete(current_performance);
-      var minutes_left = OutsideLive.setMinutesRemaining(current_performance);
-      Stages.update({_id: stageID},
-        {$set: {
-          currentPerformance: current_performance,
-          currentSong: current_song,
-          percentageComplete: percentage_complete,
-          minutesLeft: minutes_left
-        }
-      })
-    }
-  });
+//currentPerformance
+//currentSong
 
-  Session.set('stages', stages);
-  return Session.get('stages');
-};
+//update fires when a performance expires, or is made current and in time
+
+//every time a song is added we run isCurrent to ensure performance
+
+// Template.stages.updateStages = function() {
+//   var stages = Template.stages.allStages();
+  
+//   stages.forEach(function(stage) {
+//     var stageID = stage._id
+//     current_performance = Template.stages.stageCurrentPerformance(stage);
+//     if(current_performance) {
+      
+//     //grabs the current song, which is at the performances end of set list
+//       var current_song_id = _.last(current_performance.setList);
+//       var current_song = Songs.findOne({_id: current_song_id});
+//     //grabs the percentage complete 
+//       var percentage_complete = OutsideLive.percentageComplete(current_performance);
+//       var minutes_left = OutsideLive.setMinutesRemaining(current_performance);
+//       Stages.update({_id: stageID},
+//         {$set: {
+//           currentPerformance: current_performance,
+//           currentSong: current_song,
+//           percentageComplete: percentage_complete,
+//           minutesLeft: minutes_left
+//         }
+//       })
+//     }
+//   });
+
+//   Session.set('stages', stages);
+//   return Session.get('stages');
+// };
 
 Template.stages.stageCurrentPerformance = function(stage) {
   var stageID = stage._id
@@ -57,6 +69,18 @@ Template.stages.allStages = function() {
   return Stages.find().fetch();
 };
 
+// Template.stages.performance = function() {
+// 	var currentPerformance = Performances.findOne({
+// 	    stageID: stageID, 
+// 	    startTime: {$lte: currentTime},
+// 	    endTime: {$gte: currentTime}
+// 	  });
+
+// 	if(Stages.find({}))
+
+// 	return true;
+// 	return false;
+// };
 
 /*
 $(function() {
