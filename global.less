@@ -329,6 +329,7 @@ header{
 		}
 
 		.song-list{
+			padding: 5px 0;
 			li{
 				position: relative;
 				height: 34px;
@@ -352,9 +353,10 @@ header{
 				padding: 0 3px;
 				.border-radius;
 				background: #333;
-				color: #fff;
+				color: #fff!important;
 				text-decoration: none;
 				margin: 10px 0 0 4px;
+				font-weight: bold;
 			}
 			.line{
 				width: 2px;
@@ -373,6 +375,7 @@ header{
 				position: absolute;
 			}
 			.current{
+				color: #333;
 				font-weight: bold;
 				.line{
 					height: 50%;
@@ -380,6 +383,7 @@ header{
 				}
 			}
 			.past{
+				color: #666;
 				strong{
 					font-weight: normal;
 				}
@@ -492,25 +496,6 @@ body.loaded{
 	background: none!important;
 }
 
-
-.single{
-	@color: #006d4c;
-	background: fade(@color, 20%);
-	a{
-		color: @color;
-	}
-	.time{
-		background: fade(@color, 20%);
-	}
-	.bar, .song-dot, .band-name{
-		background: @color;
-	}
-	.image .icon{
-		background: url('https://s3.amazonaws.com/watson-app/stage-lands-end.png');
-		background-size: 100%;
-	}
-}
-
 #lands-end{
 	@color: #006d4c;
 	background: fade(@color, 20%);
@@ -520,7 +505,7 @@ body.loaded{
 	.time{
 		background: fade(@color, 20%);
 	}
-	.bar, .song-dot, .band-name{
+	.bar, .song-dot, .band-name, .song-list .line, .song-list .circle, .buy{
 		background: @color;
 	}
 	.image .icon{
@@ -538,7 +523,7 @@ body.loaded{
 	.time{
 		background: fade(@color, 30%);
 	}
-	.bar, .song-dot, .band-name{
+	.bar, .song-dot, .band-name, .song-list .line, .song-list .circle, .buy{
 		background: @color;
 	}
 	.image .icon{
@@ -557,7 +542,7 @@ body.loaded{
 	.time{
 		background: fade(@color, 20%);
 	}
-	.bar, .song-dot, .band-name{
+	.bar, .song-dot, .band-name, .song-list .line, .song-list .circle, .buy{
 		background: @color;
 	}
 	.image .icon{
@@ -575,7 +560,7 @@ body.loaded{
 	.time{
 		background: fade(@color, 25%);
 	}
-	.bar, .song-dot, .band-name{
+	.bar, .song-dot, .band-name, .song-list .line, .song-list .circle, .buy{
 		background: @color;
 	}
 	.image .icon{
@@ -593,7 +578,7 @@ body.loaded{
 	.time{
 		background: fade(@color, 25%);
 	}
-	.bar, .song-dot, .band-name{
+	.bar, .song-dot, .band-name, .song-list .line, .song-list .circle, .buy{
 		background: @color;
 	}
 	.image .icon{
@@ -611,7 +596,7 @@ body.loaded{
 	.time{
 		background: fade(@color, 20%);
 	}
-	.bar, .song-dot, .band-name{
+	.bar, .song-dot, .band-name, .song-list .line, .song-list .circle, .buy{
 		background: @color;
 	}
 	.image .icon{

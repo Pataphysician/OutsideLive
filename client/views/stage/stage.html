@@ -1,5 +1,5 @@
 <template name="stage">
-<div id="{{slug}}" class="single">
+<div id="{{stage.slug}}" class="single">
 
 	<div class="image">
 		<div class="icon"></div>
@@ -8,7 +8,7 @@
 	
 	<div class="band-card">
 		<div class="image" style="background-image: url('http://www.hollywoodreporter.com/sites/default/files/imagecache/thumbnail_570x321/2013/02/phoenix_band_stage_a_l.jpg');"></div>
-		<div class="band-name">{{currentPerformance.artist}}</div>
+		<div class="band-name">Vampire Weekend{{currentPerformance.artist}}</div>
 		<ul class="song-list">
 		
 			<li class="current"><div class="line"></div><div class="circle"></div><span>23:03</span><a href="#" class="buy">BUY</a><strong>Current Song Name{{currentSong.name}}</strong></li>
@@ -24,30 +24,30 @@
 		</ul>
 	</div>
 
-<h4>Later Today:</h4>
+<!--<h4>Later Today:</h4>
 <ul class="upcoming-performances">
-  {{#each upcomingPerformances}}
-  <li>{{artist}} - {{inHumanTime this.startTime}}</li>
-  {{/each}}
+  {{!#each upcomingPerformances}}
+  <li>{{!artist}} - {{!inHumanTime this.startTime}}</li>
+  {{!/each}}
 </ul>
 
 <h4>Past Performances</h4>
 
 <ul class="past-performances">
-  {{#each pastPerformances}}
+  {{!#each pastPerformances}}
   <li id="past-performance">
   <div id="performance info">
-    <p>{{artist}}<p>
+    <p>{{!artist}}<p>
     <p>Set List</p>
       <ol>
-      {{#each this.setList}}
-        <li>{{correspondingSongName this}}</li>
-        <li>{{correspondingSongStart this}} - {{correspondingSongEnd this}}</li>
-      {{/each}}
+      {{!#each this.setList}}
+        <li>{{!correspondingSongName this}}</li>
+        <li>{{!correspondingSongStart this}} - {{!correspondingSongEnd this}}</li>
+      {{!/each}}
       </ol>
     </div>
   </li>
-  {{/each}}
-</ul>
+  {{!/each}}
+</ul>-->
 
 </template>
