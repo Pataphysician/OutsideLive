@@ -12,6 +12,7 @@ Template.stages.events({
 });
 
 Template.stages.stages = function() {
+   console.log('stages session: ', Session.get('stages'));
   return Session.get('stages');
 };
 
