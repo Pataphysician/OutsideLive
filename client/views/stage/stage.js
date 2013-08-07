@@ -15,6 +15,9 @@ Template.stage.events({
 
 Template.stage.helpers({
   inHumanTime: function(time) {
+    if(!time) {
+      return "";
+    }
     return OutsideLive.inHumanTime(time);
   },
 
