@@ -198,7 +198,7 @@ header{
 		-webkit-transform:rotate(0) scale(1);
 		opacity: 1;
 		
-		-webkit-transition: all 200ms linear;
+		-webkit-transition: all 100ms linear;
 		
 		.icon{
 			margin: 11px;
@@ -218,7 +218,7 @@ header{
 		font-family: Boogaloo;
 		-webkit-transform: translate(0, 0);
 		opacity: 1;
-		-webkit-transition: all 400ms linear;
+		-webkit-transition: all 200ms linear;
 		.band{
 			font-size: 13px;
 			display: block;
@@ -253,6 +253,7 @@ header{
 			background: #ccc;
 			position: relative;
 			height: 100%;
+			-webkit-transition: all 800ms linear;
 		}
 		.song-dot{
 			height: 6px;
@@ -268,10 +269,12 @@ header{
 	.image{
 		-webkit-transform:rotate(-45deg) scale(.4);
 		opacity: 0;
+		-webkit-transition: all 0 linear;
 	}
 	.text{
 		opacity: 0;
 		-webkit-transform: translate(10px, 0);
+		-webkit-transition: all 0 linear;
 	}
 }
 
@@ -469,6 +472,26 @@ header{
 }
 */
 
+.single{
+	opacity: 1!important;
+	-webkit-transition: all 400ms linear!important;
+}
+.single.hidden{
+	opacity: 0!important;
+	.image, .text{
+		-webkit-transition: all 400ms linear!important;
+		-webkit-transform: rotate(0);
+	}
+}
+
+#stages{
+	opacity: 1!important;
+	-webkit-transition: all 400ms linear!important;
+}
+#stages.hidden{
+	opacity: 0!important;
+}
+
 body{
 	-webkit-transition: background 200ms linear;
 	background: url('/splash.png') #e75a46;
@@ -480,18 +503,27 @@ body.loaded{
 	opacity: 1;
 	background: none;
 }
-.stage{
+
+.stage .artist{
+	-webkit-transform: translate(0, 0);
+}
+.stage.out{
 	-webkit-transition: all 200ms linear;
-	.speed-up;
+	.artist{
+		-webkit-transform: translate(-20px, 0)!important;
+		opacity: 0;
+	}
+}
+.stage.transition{
+	-webkit-transition: all 200ms linear;
+	.artist{
+		-webkit-transition: all 200ms linear;
+		.speed-up;
+	}
 }
 
-.stage.out{
-	margin: 0 0 0 -20px;
+.stage.fade{
 	opacity: 0;
-}
-.stage.up{
-	-webkit-transition: all 600ms linear;
-	height: 0;
 }
 .stage.noBackground{
 	background: none!important;

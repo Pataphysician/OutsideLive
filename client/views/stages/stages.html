@@ -1,6 +1,8 @@
 <template name="stages">
-<ul id="stages">
+<ul id="stages" class="hidden">
 
+	{{rendered}}
+	
 	{{#each stages}}
 	<li class="stage" id="{{slug}}">
 		<a href="#" class="show-stage artist full" data-id="{{_id}}" data-color="#006d4c">

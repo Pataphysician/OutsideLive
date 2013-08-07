@@ -4,46 +4,15 @@ if (Meteor.isClient) {
   
   		window.scrollTo(0, 1);
 		
-		$(document).bind('openingEffect', addEffectStepping);
-		
 		var n = 1;
-		
-		setTimeout(function() {
-		
-			var stages = $('#stages').find('.stage');
-			
-			var windowHeightTop = ($(window).height() -44);
-			
-			var sixth = (windowHeightTop / 6) + 'px';
-			stages.css({'height':sixth,'line-height':sixth});
-			
-			stages.addClass('hidden');
-			
-	    }, 200);
 	    
 	    setTimeout(function() {
 		
 			$('body').addClass('loaded');
-			$(document).trigger('openingEffect');
 			
 	    }, 600);
 	    
-	    function addEffectStepping(){
-	    	
-	        setTimeout(function() {
-	        	console.log('yep');
-	           $('#stages').find('.stage:nth-child(' + n +')').removeClass('hidden');
-	            n++;
-	
-	            if (n == stages.length){
-	                n = 0;
-	                $(document).unbind('openingEffect');
-	            } else {
-		            addEffectStepping();
-	            };
-	            
-	        }, 200);
-	    }
+	    
       var stage_names = ["Lands End", "Sutro", "Twin Peaks", 
     "Panhandle", "The Dome", "The Barbary"];
       for(var i = 0; i < 6; i++) {

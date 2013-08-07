@@ -1,15 +1,34 @@
 Template.stages.events({
   "click a.show-stage" : function(event) {
+  
+  	var artist = $('#stages').find('.artist');
+  	var notThis = artist.not($(event.target).closest('a')).parent();
+	artist.parent().addClass('transition');
+	notThis.addClass('out');
+
     event.preventDefault();
-    var stageID = $(event.target).closest("a").attr('data-id');
-    var stage = Stages.findOne({_id: stageID});
-    var currentPerformance = Template.stages.stageCurrentPerformance(stage);
-    Meteor.call("getArtistBio", currentPerformance);
-    Meteor.call("getArtistImage", currentPerformance);
-    Session.set("currentStage", stage);
-    Session.set('currentPerformance', currentPerformance);
-    //get current perf it will have an array percentMarkers, a percent is pushed everytime a new song is pushed
-    //interate through the percent markers. single stage view work can directly access. multi stage view needs multi dem array
+    
+    //var color = $(event.target).closest('.stage').css('backgroundColor');
+	//$('body').css('background', color);
+    
+	var stageID = $(event.target).closest("a").attr('data-id');
+	var stage = Stages.findOne({_id: stageID});
+	var currentPerformance = Template.stages.stageCurrentPerformance(stage);
+	
+	setTimeout(function() {
+		artist.parent().addClass('fade');
+    }, 200);
+        
+    setTimeout(function() {
+		
+		Meteor.call("getArtistBio", currentPerformance);
+		Meteor.call("getArtistImage", currentPerformance);
+		Session.set("currentStage", stage);
+		Session.set('currentPerformance', currentPerformance);
+		//get current perf it will have an array percentMarkers, a percent is pushed everytime a new song is pushed
+		//interate through the percent markers. single stage view work can directly access. multi stage view needs multi dem array
+    
+    }, 200);
   }
 });
 
@@ -147,3 +166,27 @@ $(function() {
 	});
 });
 */
+
+Template.stages.rendered = function () { 
+	
+	var stages = $('#stages').find('.stage');
+	var windowHeightTop = ($(window).height() -44);
+	var sixth = (windowHeightTop / 6) + 'px';	
+	stages.css({'height':sixth,'line-height':sixth});
+	stages.addClass('hidden');
+		
+	$('#stages').removeClass('hidden');
+	
+	setTimeout(function() {
+		
+		var c = 0;
+		var interval = setInterval(function() { 
+	          $('#stages').find('.stage:nth-child(' + c + ')').removeClass('hidden');
+	          c++; 
+	          if(c > stages.length) clearInterval(interval);
+		}, 150);
+	
+	}, 200);                
+            
+        
+}

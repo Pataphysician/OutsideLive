@@ -1,5 +1,8 @@
 <template name="stage">
-<div id="{{stage.slug}}" class="single">
+
+{{rendered}}
+
+<div id="{{stage.slug}}" class="single hidden">
 
 	<div class="image">
 		<div class="icon"></div>
@@ -11,13 +14,13 @@
 		<div class="band-name">Vampire Weekend{{currentPerformance.artist}}</div>
 		<ul class="song-list">
 		
-			<li class="current"><div class="line"></div><div class="circle"></div><span>{{currentSong.startedAt}}</span><a href="#" class="buy">BUY</a><strong>Current Song: {{currentSong.name}}</strong></li>
+			<li class="current"><div class="line"></div><div class="circle"></div><span>{{currentSong.startedAt}}</span><a href="#" class="buy">BUY</a><strong>{{currentSong.name}}</strong></li>
 			<li class="past"><div class="line"></div><div class="circle"></div><span>0.00</span><a href="#" class="buy">BUY</a><strong>Past Song Name</strong></li>
 			<li class="past"><div class="line"></div><div class="circle"></div><span>0.00</span><a href="#" class="buy">BUY</a><strong>Past Song Name</strong></li>
 		
 
 			{{#each playedSongIDs}}
-				<li class="past"><div class="line"></div><div class="circle"></div><span>{{correspondingSongStart this}} - {{correspondingSongEnd this}}</span><strong>{{correspondingSongName this}}</strong></li>
+				<li class="past"><div class="line"></div><div class="circle"></div><span>{{correspondingSongStart this}} {{!correspondingSongEnd this}}</span><a href="#" class="buy">BUY</a><strong>{{correspondingSongName this}}</strong></li>
 			{{/each}}
 			
 

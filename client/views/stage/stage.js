@@ -1,10 +1,3 @@
-Template.stage.events({
-  "click a.go-back": function() {
-    Session.set("currentStage", null);
-    Session.set("currentPerformance", null);
-  },
-});
-
 Template.stage.helpers({
   inHumanTime: function(time) {
     return OutsideLive.inHumanTime(time);
@@ -116,3 +109,9 @@ Template.stage.currentArtistImageURL = function(performance) {
 Template.stage.humanTime = function(time) {
   return OutsideLive.inHumanTime(time);
 };
+
+Template.stage.rendered = function () { 
+	setTimeout(function() {
+		$('.single').removeClass('hidden');
+	}, 50);   
+}
