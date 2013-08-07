@@ -1,38 +1,48 @@
 if (Meteor.isClient) {
   
   Meteor.startup(function() {  
-		var stages = $('#stages').find('.stage');
-		var n = 1;
-		
-		var windowHeightTop = ($(window).height() -44);
-		
-		var sixth = (windowHeightTop / 6) + 'px';
-		stages.css({'height':sixth,'line-height':sixth});
+  
+  		window.scrollTo(0, 1);
 		
 		$(document).bind('openingEffect', addEffectStepping);
-	
+		
+		var n = 1;
+		
 		setTimeout(function() {
+		
+			var stages = $('#stages').find('.stage');
+			
+			var windowHeightTop = ($(window).height() -44);
+			
+			var sixth = (windowHeightTop / 6) + 'px';
+			stages.css({'height':sixth,'line-height':sixth});
+			
+			stages.addClass('hidden');
+			
+	    }, 200);
+	    
+	    setTimeout(function() {
+		
 			$('body').addClass('loaded');
 			$(document).trigger('openingEffect');
 			
 	    }, 600);
 	    
-	    stages.addClass('hidden');
-	    
 	    function addEffectStepping(){
 	    	
-	    	
 	        setTimeout(function() {
-	        console.log('yep');
+	        	console.log('yep');
 	           $('#stages').find('.stage:nth-child(' + n +')').removeClass('hidden');
 	            n++;
 	
-	            if (n == length){
-	                n = 1;
+	            if (n == stages.length){
+	                n = 0;
 	                $(document).unbind('openingEffect');
+	            } else {
+		            addEffectStepping();
 	            };
 	            
-	            addEffectStepping();
+	            
 	
 	        }, 200);
 	    }

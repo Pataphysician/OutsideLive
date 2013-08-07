@@ -8,17 +8,15 @@
 	
 	<div class="band-card">
 		<div class="image" style="background-image: url('http://www.hollywoodreporter.com/sites/default/files/imagecache/thumbnail_570x321/2013/02/phoenix_band_stage_a_l.jpg');"></div>
-		<div class="band-name">{{currentPerformance.artist}}</div>
-		<div class="time" data-start="{{currentPerformance.startTime}}" data-end="{{currentPerformance.endTime}}">
-			<div class="bar"><div class="label"></div></div>
-		</div>
+		<div class="band-name">{{!currentPerformance.artist}} Vampire Weekend</div>
 		<ul class="song-list">
 		
+			<li class="current"><div class="circle"></div><span>23:03</span><strong>{{currentSong.name}}</strong></li>
+		
 			{{#each setList}}
-			  	<li><strong>{{name}}</strong><span>{{startedTime}} - 3:14</span></li>
+				<li class="past"><div class="circle"></div><span>{{startedTime}}</span><strong>{{name}}</strong></li>
 			{{/each}}
   
-				<li><strong>Live: {{currentSong.name}}</strong><span><!--{{currentSong.startedAt}}--><div class="icon"></div></span></li>
 		</ul>
 	</div>
 
