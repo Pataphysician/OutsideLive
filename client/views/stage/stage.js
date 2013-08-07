@@ -61,7 +61,7 @@ Template.stage.upcomingPerformances = function() {
   if (currentPerformance) {
     var current_performance_end = currentPerformance.endTime;
     var upcoming_performances = Performances.find({
-      stage: stage.name,
+      stageID: stage._id,
       startTime: {$gte: current_performance_end}
     }, {
       sort: {startTime: 1},
