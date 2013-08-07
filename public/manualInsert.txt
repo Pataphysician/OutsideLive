@@ -8,11 +8,11 @@ Stages.find().fetch()
 //Copy performance template
 Performances.insert({
 	artist: "Vampire Weekend",
-	endTime: 2000,
+	endTime: 2200,
 	isCurrent: true,
 	setList: [],
   songMarkers: [],
-	stageID: "WbGJmWD79XfywfmHN",
+	stageID: "Lakg2rSCyEXnsDqtE",
 	startTime: 1900
 });
 //Update startTime, endTime, stageId
