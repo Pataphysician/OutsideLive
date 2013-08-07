@@ -8,12 +8,12 @@ Stages.find().fetch()
 //Copy performance template
 Performances.insert({
 	artist: "Vampire Weekend",
-	endTime: 200,
+	endTime: 2000,
 	isCurrent: true,
 	setList: [],
   songMarkers: [],
-	stageID: "9kdSqiqygvoScfs7j",
-	startTime: 100
+	stageID: "WbGJmWD79XfywfmHN",
+	startTime: 1900
 });
 //Update startTime, endTime, stageId
 //enter
@@ -43,12 +43,12 @@ curl -d "{\"stage\": \"stage#2\",\"artist\": \"Vampire Weekend\",\"name\": \"Ste
 New perforance on Sutro from 10am to 12pm, also its assuming current. set: start, end, stageID.
 Performances.insert({
 	artist: "Vampire Weekend",
-	endTime: 1700,
+	endTime: 2000,
 	isCurrent: true,
 	setList: [],
   percentMarkers: [],
-	stageID: "J2nHZJ6kqNEa9nH2k",
-	startTime: 1600
+	stageID: "eyTkJ9mDAkheWJuPJ",
+	startTime: 1800
 });
 
 Remove single song
