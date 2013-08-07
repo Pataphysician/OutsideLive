@@ -55,7 +55,7 @@ if (Meteor.isClient) {
         for(var i = 0; i < 6; i++) {
           OutsideLive.updateStage(stage_names[i]);
         }
-      }, 30000);
+      }, 10000);
 
       //demo click has three songs, others have one current one
       //make time of shit between 12pm and 5pm
@@ -134,9 +134,18 @@ if (Meteor.isClient) {
     return Session.get("adminPanel");
   });
 
+
 };
 
 if (Meteor.isServer) {
+  tweet = new Twitter();
+
+  Meteor.methods({
+    postSong: function() {
+      tweet.postTweet("testing #swag");
+    }
+  });
+
   
   // Meteor.publish("number-of-stages", function () {
   //     var self = this;
