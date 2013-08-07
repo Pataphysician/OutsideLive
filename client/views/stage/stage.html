@@ -8,13 +8,13 @@
 	
 	<div class="band-card">
 		<div class="image" style="background-image: url('http://www.hollywoodreporter.com/sites/default/files/imagecache/thumbnail_570x321/2013/02/phoenix_band_stage_a_l.jpg');"></div>
-		<div class="band-name">{{!currentPerformance.artist}} Vampire Weekend</div>
+		<div class="band-name">{{currentPerformance.artist}}</div>
 		<ul class="song-list">
 		
 			<li class="current"><div class="circle"></div><span>23:03</span><strong>{{currentSong.name}}</strong></li>
 		
-			{{#each setList}}
-				<li class="past"><div class="circle"></div><span>{{startedAt}}</span><strong>{{name}}</strong></li>
+			{{#each playedSongIDs}}
+				<li class="past"><div class="circle"></div><span>{{correspondingSongStart this}} - {{correspondingSongEnd this}}</span><strong>{{correspondingSongName this}}</strong></li>
 			{{/each}}
 			
 
@@ -24,7 +24,7 @@
 <h4>Later Today:</h4>
 <ul class="upcoming-performances">
   {{#each upcomingPerformances}}
-  <li>{{artist}} - {{startTime}}</li>
+  <li>{{artist}} - {{inHumanTime this.startTime}}</li>
   {{/each}}
 </ul>
 
@@ -38,8 +38,8 @@
     <p>Set List</p>
       <ol>
       {{#each setList}}
-        <li>{{name}}</li>
-        <li>{{startedAt}} - {{endAt}}</li>
+        <li>{{correspondingSong this}}</li>
+        <li>{{correspondingSongStart this}} - {{correspondingSongEnd this}}</li>
       {{/each}}
       </ol>
     </div>
