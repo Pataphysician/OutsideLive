@@ -136,6 +136,14 @@ if (Meteor.isClient) {
     return Session.get("adminPanel");
   });
 
+  Handlebars.registerHelper("mainPage", function() {
+    var main = (Session.get('currentStage'))
+    if (!main) {
+      return false;
+    }
+    return true;
+  })
+
   Meteor.methods({
     getArtistImage: function(performance) {
     var performanceID = performance._id
@@ -182,6 +190,7 @@ if (Meteor.isClient) {
 };
 
 if (Meteor.isServer) {
+
   
   // Meteor.publish("number-of-stages", function () {
   //     var self = this;
