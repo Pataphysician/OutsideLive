@@ -22,7 +22,7 @@ Template.stages.updateStages = function() {
     current_performance = Template.stages.stageCurrentPerformance(stage);
     if(current_performance) {
       var current_song_id = _.last(current_performance.setList);
-      var current_song = Songs.findOne({_id: current_song_id});gi
+      var current_song = Songs.findOne({_id: current_song_id});
       var percentage_complete = OutsideLive.percentageComplete(current_performance);
       var minutes_left = OutsideLive.setMinutesRemaining(current_performance);
       Stages.update({_id: stageID},
