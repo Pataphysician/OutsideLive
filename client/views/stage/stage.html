@@ -37,8 +37,8 @@
     <p>{{artist}}<p>
     <p>Set List</p>
       <ol>
-      {{#each setList}}
-        <li>{{correspondingSong this}}</li>
+      {{#each this.setList}}
+        <li>{{correspondingSongName this}}</li>
         <li>{{correspondingSongStart this}} - {{correspondingSongEnd this}}</li>
       {{/each}}
       </ol>
