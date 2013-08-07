@@ -17,6 +17,10 @@ Template.stages.helpers({
   percentUpToCurrentSong: function(stage) {
     return _.last(stage.percentMarkers);
   },
+
+  inHumanTime: function(time) {
+    return OutsideLive.inHumanTime(time);
+  },
 });
 
 Template.stages.stages = function() {
