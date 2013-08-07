@@ -37,13 +37,18 @@ Meteor.startup(function () {
 
 
             Songs.insert(song_attrs);
-
+            var performance = Performances.findOne({artist: obj.artist});
+             
             var newSong = Songs.findOne({
               name: obj.name,
               artist: obj.artist
             });
 
-            Performances.update({artist: obj.artist}, {$push: {setList: newSong._id}});
+            Performances.update({artist: obj.artist}, {$push: {
+                setList: newSong._id, 
+                percentMarkers: OutsideLive.percentageComplete(performance)
+              }
+            });
             
             if(Songs.find({artist: obj.artist}).count() !== 0) {
               OutsideLive.setEndTime(newSong)

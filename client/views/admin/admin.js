@@ -19,6 +19,7 @@ Template.admin.events({
       startTime: start_time,
       endTime: end_time,
       setList: [],
+      percentMarkers: []
     })
 
     Session.set("adminPanel", false);

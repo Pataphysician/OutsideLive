@@ -1,5 +1,4 @@
 <template name="stages">
-<div class = "stuff">
 <ul id="stages">
 
 	{{#each stages}}
@@ -9,11 +8,12 @@
 			<div class="image"><div class="icon"></div></div>
 			{{#if currentPerformance}}
 			<div class="text">
-				<span class="band">{{currentPerformance.artist}}</span>
-				<span class="song">{{currentSong.name}}</span>
+				<span class="band">{{currentPerformance.artist}}Vampire Weekend</span>
+				<span class="song">{{currentSong.name}}Cape Cod Kwassa Kwassa</span>
 			</div>
-			<div class="time" data-start="{{currentPerformance.startTime}}" data-end="{{currentPerformance.endTime}}">
-				<div class="bar" style="width: {{percentageComplete}}%"><div class="label">{{minutesLeft}} Minutes Left</div></div>
+			<div class="time">
+				<div class="bar" style="width: 34%"></div>
+				<div class="song-dot" style="left: 12%;"></div><div class="song-dot" style="left: 34%;"></div>
 			</div>
 			{{/if}}
   	
@@ -22,5 +22,4 @@
   	{{/each}}
 
 </ul>
-</div>
 </template>

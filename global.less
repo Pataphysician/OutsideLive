@@ -176,12 +176,8 @@ header{
 	padding: 44px 0 0 0;
 }
 .stage{
-	height: 69px;
-	overflow: hidden;
 	position: relative;
-	&:last-child{
-		height: 71px;
-	}
+	min-height: 64px;
 	.artist{
 		text-decoration: none;
 		.clearfix;
@@ -196,7 +192,14 @@ header{
 	.image{
 		height: 62px;
 		width: 62px;
-		float: left;
+		display: inline-block;
+		vertical-align: middle;
+		padding-bottom: 1.5%;
+		-webkit-transform:rotate(-45deg) scale(.4);
+		opacity: 0;
+		
+		-webkit-transition: all 200ms linear;
+		
 		.icon{
 			margin: 11px;
 			width: 40px;
@@ -210,16 +213,18 @@ header{
 		}
 	}
 	.text{
-		height: 56px;
-		float: left;
+		display: inline-block;
+		vertical-align: middle;
 		font-family: Boogaloo;
+		-webkit-transform: translate(10px, 0);
+		opacity: 0;
+		-webkit-transition: all 400ms linear;
 		.band{
 			font-size: 13px;
 			display: block;
 			-webkit-font-smoothing: antialiased;
 			font-family: helvetica;
 			line-height: 14px;
-			margin: 12px 0 0;
 			width: 240px;
 			white-space: nowrap;
 			overflow: hidden;
@@ -235,32 +240,38 @@ header{
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
+			padding-bottom: 3%;
 		}
 	}
 	.time{
 		position: absolute;
 		bottom: 0;
-		height: 8px;
+		height: 2px;
 		width: 100%;
+		z-index: 3;
 		.bar{
 			background: #ccc;
 			position: relative;
 			height: 100%;
 		}
-		.label{
-			font-size: 6px;
-			line-height: 10px;
-			text-transform: uppercase;
-			-webkit-font-smoothing: antialiased;
-			font-family: helvetica;
-			letter-spacing: 1px;
+		.song-dot{
+			height: 6px;
+			width: 6px;
+			border-radius: 3px;
 			position: absolute;
-			color: rgba(255,255,255,.7);
-			right: 2px;
-			margin: -1px 0 0 ;
-			width: 100%;
-			text-align: right;
+			top: -2px;
 		}
+	}
+}
+
+.show{
+	.image{
+		-webkit-transform:rotate(0deg) scale(1);
+		opacity: 1;
+	}
+	.text{
+		opacity: 1;
+		-webkit-transform: translate(0, 0);
 	}
 }
 
@@ -322,20 +333,6 @@ header{
 				background: #ccc;
 				position: relative;
 				height: 100%;
-			}
-			.label{
-				font-size: 6px;
-				line-height: 10px;
-				text-transform: uppercase;
-				-webkit-font-smoothing: antialiased;
-				font-family: helvetica;
-				letter-spacing: 1px;
-				position: absolute;
-				color: rgba(255,255,255,.7);
-				right: 2px;
-				margin: -1px 0 0 ;
-				width: 100%;
-				text-align: right;
 			}
 		}
 		.song-list{
@@ -464,12 +461,14 @@ header{
 
 body{
 	-webkit-transition: all 400ms linear;
-}
-body.loading{
 	background: url('/splash.png') #e75a46;
 	background-size: 100%;
 	opacity: 0;
 	.speed-up;
+}
+body.loaded{
+	background: none;
+	opacity: 1;
 }
 .stage{
 	-webkit-transition: all 200ms linear;
@@ -495,11 +494,14 @@ body.loading{
 	a{
 		color: @color;
 	}
-	.bar{
+	.time{
+		background: fade(@color, 20%);
+	}
+	.bar, .song-dot{
 		background: @color;
 	}
 	.image .icon{
-		background: url('/stage-lands-end.png');
+		background: url('https://s3.amazonaws.com/watson-app/stage-lands-end.png');
 		background-size: 100%;
 	}
 }
@@ -510,11 +512,14 @@ body.loading{
 	a{
 		color: @color;
 	}
-	.bar{
+	.time{
+		background: fade(@color, 30%);
+	}
+	.bar, .song-dot{
 		background: @color;
 	}
 	.image .icon{
-		background: url('/stage-sutro.png');
+		background: url('https://s3.amazonaws.com/watson-app/stage-sutro.png');
 		background-size: 100%;
 	}
 }
@@ -526,11 +531,14 @@ body.loading{
 	a{
 		color: @color;
 	}
-	.bar{
+	.time{
+		background: fade(@color, 20%);
+	}
+	.bar, .song-dot{
 		background: @color;
 	}
 	.image .icon{
-		background: url('/stage-twin-peaks.png');
+		background: url('https://s3.amazonaws.com/watson-app/stage-twin-peaks.png');
 		background-size: 100%;
 	}
 }
@@ -541,11 +549,14 @@ body.loading{
 	a{
 		color: @color;
 	}
-	.bar{
+	.time{
+		background: fade(@color, 25%);
+	}
+	.bar, .song-dot{
 		background: @color;
 	}
 	.image .icon{
-		background: url('/stage-panhandle.png');
+		background: url('https://s3.amazonaws.com/watson-app/stage-panhandle.png');
 		background-size: 100%;
 	}
 }
@@ -556,11 +567,14 @@ body.loading{
 	a{
 		color: @color;
 	}
-	.bar{
+	.time{
+		background: fade(@color, 25%);
+	}
+	.bar, .song-dot{
 		background: @color;
 	}
 	.image .icon{
-		background: url('/stage-dome.png');
+		background: url('https://s3.amazonaws.com/watson-app/stage-dome.png');
 		background-size: 100%;
 	}
 }
@@ -571,11 +585,18 @@ body.loading{
 	a{
 		color: @color;
 	}
-	.bar{
+	.time{
+		background: fade(@color, 20%);
+	}
+	.bar, .song-dot{
 		background: @color;
 	}
 	.image .icon{
-		background: url('/stage-barbary.png');
+		background: url('https://s3.amazonaws.com/watson-app/stage-barbary.png');
 		background-size: 100%;
 	}
+}
+
+[name="search"]{
+	display: none;
 }

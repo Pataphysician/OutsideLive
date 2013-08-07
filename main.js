@@ -1,12 +1,41 @@
-StagesCount = new Meteor.Collection('stages-count');
-
 if (Meteor.isClient) {
   
-  Meteor.startup(function() {
+  Meteor.startup(function() {  
+		var stages = $('#stages').find('.stage');
+		var n = 1;
+		
+		var windowHeightTop = ($(window).height() -44);
+		
+		var sixth = (windowHeightTop / 6) + 'px';
+		stages.css({'height':sixth,'line-height':sixth});
+		
+		$(document).bind('openingEffect', addEffectStepping);
+	
+		setTimeout(function() {
+			$('body').addClass('loaded');
+			$(document).trigger('openingEffect');
+			
+	    }, 600);
+	    
+	    function addEffectStepping(){
+	        setTimeout(function() {
+	           $('#stages').find('.stage:nth-child(' + n +')').addClass('show');
+	            n++;
+	
+	            if (n == length){
+	                n = 0;
+	            };
+	            
+	            addEffectStepping();
+	
+	        }, 200);
+	    }
+
+      Template.stages.updateStages();
 
       Meteor.setInterval(function() {
         //update the attributes for the stages every 30 seconds
-        Template.stages.stages();
+        Template.stages.updateStages();
       }, 30000);
 
       //demo click has three songs, others have one current one
@@ -203,32 +232,38 @@ if (Meteor.isServer) {
   Meteor.methods({
     getArtistImage: function(performance) {
     url = "http://developer.echonest.com/api/v4/artist/images"
-
-    Meteor.http.call("GET", url, 
-      {params: {
-        api_key: "FJIRSCGH8XZMYGTBT",
-        name: performance.artist,
-      }},
-      function(error, result) {
-        var imageURL = result.data.response.images[0].url;
-        performance.imageURL = imageURL;
-        return imageURL;
-      })
+    try {
+      Meteor.http.call("GET", url, 
+        {params: {
+          api_key: "FJIRSCGH8XZMYGTBT",
+          name: performance.artist,
+        }},
+        function(error, result) {
+          var imageURL = result.data.response.images[0].url;
+          performance.imageURL = imageURL;
+          return imageURL;
+        })
+    } catch (err) {
+      console.log("error getting artist image: ", err);
+    }
   },
 
   getArtistBio: function(performance) {
     url = "http://developer.echonest.com/api/v4/artist/biographies"
-
-    Meteor.http.call("GET", url,
-      {params: {
-        api_key: "FJIRSCGH8XZMYGTBT",
-        name: performance.artist,
-      }},
-      function(error, result) {
-        var bio = result.data.response.biographies[0].text;
-        performance.bio = bio;
-        return bio;
-      })
+    try {
+      Meteor.http.call("GET", url,
+        {params: {
+          api_key: "FJIRSCGH8XZMYGTBT",
+          name: performance.artist,
+        }},
+        function(error, result) {
+          var bio = result.data.response.biographies[0].text;
+          performance.bio = bio;
+          return bio;
+        })
+    } catch (err) {
+      console.log("error getting artist bio: ", err);
+    }
   },
   });
 

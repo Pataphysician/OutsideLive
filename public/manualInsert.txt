@@ -11,6 +11,7 @@ Performances.insert({
 	endTime: 200,
 	isCurrent: true,
 	setList: [],
+  songMarkers: [],
 	stageID: "9kdSqiqygvoScfs7j",
 	startTime: 100
 });
@@ -42,11 +43,12 @@ curl -d "{\"stage\": \"stage#2\",\"artist\": \"Vampire Weekend\",\"name\": \"Ste
 New perforance on Sutro from 10am to 12pm, also its assuming current. set: start, end, stageID.
 Performances.insert({
 	artist: "Vampire Weekend",
-	endTime: 200,
+	endTime: 1700,
 	isCurrent: true,
 	setList: [],
-	stageID: "9kdSqiqygvoScfs7j",
-	startTime: 100
+  percentMarkers: [],
+	stageID: "J2nHZJ6kqNEa9nH2k",
+	startTime: 1600
 });
 
 Remove single song
