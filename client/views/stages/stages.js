@@ -14,6 +14,9 @@ Template.stages.events({
 	var stageID = $(event.target).closest("a").attr('data-id');
 	var stage = Stages.findOne({_id: stageID});
 	var currentPerformance = Template.stages.stageCurrentPerformance(stage);
+
+  var curSongID = _.last(currentPerformance.setList);
+  var curSong = Songs.findOne({_id: curSongID});
 	
 	setTimeout(function() {
 		artist.parent().addClass('fade');
@@ -25,6 +28,8 @@ Template.stages.events({
 		Meteor.call("getArtistImage", currentPerformance);
 		Session.set("currentStage", stage);
 		Session.set('currentPerformance', currentPerformance);
+    Session.set('currentSong', curSong);
+    Session.set('playedSongIDs', currentPerformance.setList.slice(0, -1).reverse())
 		//get current perf it will have an array percentMarkers, a percent is pushed everytime a new song is pushed
 		//interate through the percent markers. single stage view work can directly access. multi stage view needs multi dem array
     

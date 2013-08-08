@@ -60,7 +60,7 @@ Template.stage.setList = function() {
 
 Template.stage.playedSongIDs = function() {
   try {
-    return Template.stage.currentPerformance().setList.slice(0, -1);
+    return Session.get('playedSongIDs');
   } catch (err) {
     console.log(err);
   }
@@ -81,7 +81,7 @@ Template.stage.currentSong = function() {
   try {
     var songID = _.last(Template.stage.currentPerformance().setList);
     var song = Songs.findOne({_id: songID});
-    return song;
+    return Session.get('currentSong');
   } catch (err) {
     console.log(err);
   }
@@ -128,6 +128,24 @@ Template.stage.humanTime = function(time) {
   return OutsideLive.inHumanTime(time);
 };
 
+Template.stage.newSongAppend = function(song) {
+  var replaceSongStar = $('.current-song-start').text();
+  var replaceSongName = $('.current-song-name').text();
+  var replaceSongBuyLink = $('.current-song-buy').attr('href');
+
+
+};
+
 Template.stage.rendered = function () { 
-  
+  Deps.autorun(function() {
+    Meteor.subscribe("songadded", function() {
+      var stage = Session.get('currentStage');
+      var performance = Performances.findOne({stageID: stage._id});
+      var curSongID = _.last(performance.setList);
+      var curSong = Songs.findOne({_id: curSongID});
+      Session.set('currentPerformance', performance);
+      Session.set('currentSong', curSong);
+      Session.set('playedSongIDs', performance.setList.slice(0, -1).reverse())
+    })
+  })
 }

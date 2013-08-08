@@ -111,6 +111,10 @@ if (Meteor.isClient) {
     return Session.get("currentStage");
   });
 
+  Handlebars.registerHelper("currentPerformance", function() {
+    return Session.get("currentPerformance");
+  })
+
   Handlebars.registerHelper("isCurrentUser", function() {
     return Meteor.user();
   });

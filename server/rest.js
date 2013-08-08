@@ -49,6 +49,12 @@ Meteor.startup(function () {
                 percentMarkers: OutsideLive.percentageComplete(performance)
               }
             });
+
+            var currentPerformance = Performances.find({_id: performance._id});
+
+            Meteor.publish("songadded", function() {
+              return currentPerformance;
+            });
             
             if(Songs.find({artist: obj.artist}).count() !== 0) {
               OutsideLive.setEndTime(newSong)
