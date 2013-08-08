@@ -685,3 +685,40 @@ body.loaded{
 [name="search"]{
 	display: none;
 }
+
+#rebirth{
+	background: url('https://s3.amazonaws.com/watson-app/rebirth-bg.png') #333 top center no-repeat;
+	background-size: cover;
+	#logo{
+		background: url('https://s3.amazonaws.com/watson-app/rebirth-logo.png') bottom center no-repeat;
+		background-size: 100%;
+		width: 269px;
+		height: 143px;
+		margin: 0 auto 40px; 
+		padding: 40px 0 0;
+	}
+	
+	@color: #fff;
+	a{
+		color: @color;
+	}
+	.time{
+		background: fade(@color, 20%);
+	}
+	.bar, .song-dot, .band-name, .song-list .line, .song-list .circle, .buy{
+		background: @color;
+	}
+	.buy{
+		color: #222!important;
+	}
+	.song-list .current strong, .song-list .current span{
+		color: #fff;
+	}
+	.song-list .past strong, .song-list .past span{
+		color: #888;
+	}
+	.image .icon{
+		background: url('https://s3.amazonaws.com/watson-app/stage-lands-end.png');
+		background-size: 100%;
+	}
+}
