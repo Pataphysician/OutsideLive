@@ -1,17 +1,27 @@
 <template name="stage">
 
 {{rendered}}
+  {{#if isDemo}}
+<div class="single" id="rebirth">
+  <div id="logo"></div>
+  {{/if}}
 
 <div id="{{stage.slug}}" class="single">
 
 	<div class="image">
 		<div class="icon"></div>
+    {{#if isDemo}}
+    {{else}}
 		<h2>{{stage.name}} Stage</h2>
+    {{/if}}
 	</div>
 	
 	<div class="band-card">
+    {{#if isDemo}}
+    {{else}}
 		<div class="image" style="background-image: url('{{currentPerformance.imageURL}}');"></div>
 		<div class="band-name">Vampire Weekend{{currentPerformance.artist}}</div>
+    {{/if}}
 		<ul class="song-list">
 		
 			<li class="current"><div class="line"></div><div class="circle"></div><span>{{inHumanTime currentSong.startedAt}}</span><a href="#" class="buy">BUY</a><strong>{{currentSong.name}}</strong></li>
@@ -31,6 +41,7 @@
 
 		</ul>
 	</div>
+</div>
 
 <!--<h4>Later Today:</h4>
 <ul class="upcoming-performances">

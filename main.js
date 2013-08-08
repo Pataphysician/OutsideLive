@@ -1,4 +1,15 @@
+
 if (Meteor.isClient) {
+
+  Meteor.Router.add({
+    '': function() {
+      Session.set('demo', false);
+    },
+
+    '/single': function() {
+      Session.set("demo", true);
+    },
+  });
   
   Meteor.startup(function() {  
   

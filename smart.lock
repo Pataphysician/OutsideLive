@@ -4,7 +4,8 @@
     "basePackages": {
       "collection-api": {},
       "npm": {},
-      "twitter-api": {}
+      "twitter-api": {},
+      "router": {}
     },
     "packages": {
       "collection-api": {
@@ -21,6 +22,16 @@
         "git": "https://github.com/Sewdn/meteor-twitter-api.git",
         "tag": "v0.1.0",
         "commit": "c7a0dbfe61f6207d40cc1863c45b179aadadbb6a"
+      },
+      "router": {
+        "git": "https://github.com/tmeasday/meteor-router.git",
+        "tag": "v0.5.3",
+        "commit": "7bd3a1bdd1099625bb8b49406d9b8f961d6f4a17"
+      },
+      "page-js-ie-support": {
+        "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",
+        "tag": "v1.3.5",
+        "commit": "b99ed8380aefd10b2afc8f18d9eed4dd0d8ea9cb"
       }
     }
   }

@@ -2,6 +2,7 @@
   "packages": {
     "collection-api": {},
     "npm": {},
-    "twitter-api": {}
+    "twitter-api": {},
+    "router": {}
   }
 }

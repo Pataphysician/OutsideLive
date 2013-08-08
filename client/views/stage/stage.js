@@ -38,6 +38,14 @@ Template.stage.helpers({
     return OutsideLive.inHumanTime(song.endAt);
   },
 
+  isDemo: function() {
+    return Session.get('demo');
+  },
+
+  isNotDemo: function() {
+    return !Session.get('demo');
+  }
+
 });
 
 Template.stage.stage = function() {
